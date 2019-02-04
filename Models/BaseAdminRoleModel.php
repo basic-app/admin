@@ -43,7 +43,7 @@ abstract class BaseAdminRoleModel extends \BasicApp\Core\Model
 			return;
 		}
 
-		static::getRole(AdminModel::ROLE_ADMIN, true, ['role_name' => 'Admin']);
+		static::getRole(AdminModel::ADMIN_ROLE, true, ['role_name' => 'Admin']);
 
 		$installed = true;
 	}
