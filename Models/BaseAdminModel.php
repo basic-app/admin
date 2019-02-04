@@ -52,7 +52,7 @@ abstract class BaseAdminModel extends \BasicApp\Core\Model implements AuthInterf
 		$model->insert([
 			'admin_role_id' => $role->role_id,
 			'admin_name' => 'admin',
-			'admin_password_hash' => static::encodeAdminPassword('admin')
+			'admin_password_hash' => static::encodePassword('admin')
 		]);
 
 		$model->protect(true);
