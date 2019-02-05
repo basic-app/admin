@@ -1,7 +1,6 @@
 <?php
 
 use CodeIgniter\Events\Events;
-
 use BasicApp\Admin\Models\AdminModel;
 use BasicApp\Admin\Controllers\Admin;
 use BasicApp\Admin\Controllers\AdminRole;
@@ -9,6 +8,10 @@ use BasicApp\Admin\Controllers\AdminRole;
 Events::on('install', function()
 {
 	AdminModel::install();
+});
+
+Events::on('pre_system', function() {
+    helper(['form']);
 });
 
 Events::on('admin_main_menu', function($menu)
