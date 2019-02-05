@@ -30,7 +30,7 @@ echo PHPTheme::widget('tableRow', [
         ],
         [
             'options' => ['style' => 'width: 1%; padding-left: 10px; padding-right: 20px'],
-            'content' => PHPTheme::widget('tablebuttonDelete', [
+            'content' => PHPTheme::widget('tableButtonDelete', [
                 'url' => classic_url('admin/admin-role/delete', ['id' => $model->role_id]),
                 'label' => t('admin', 'Delete')
             ])
