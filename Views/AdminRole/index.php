@@ -8,7 +8,7 @@ require __DIR__ . '/_common.php';
 $this->data['actionMenu'][] = [
 	'url' => classic_url('admin/admin-role/create', ['returnUrl' => 'admin/admin-role']), 
 	'label' => t('admin.menu', 'Add Role'), 
-	'icon' => 'plus',
+	'icon' => 'fa fa-plus',
 	'linkOptions' => [
 		'class' => 'btn btn-success'
 	]	
