@@ -58,7 +58,7 @@ abstract class BaseLogin extends \BasicApp\Core\AdminController
 				{
 					if (AdminModel::checkPassword($entity->password, $admin->admin_password_hash))
 					{
-						AdminModel::login($admin);
+						AdminModel::login($admin, $entity->remember_me);
 
 						$url = site_url('admin');
 

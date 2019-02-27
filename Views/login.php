@@ -21,13 +21,13 @@ echo PHPTheme::widget('login', [
 				'name' => 'password',
 				'label' => $form->fieldLabel('password'),
 				'value' => ''
-			]/*,
+			],
 			[
 				'type' => 'checkbox',
 				'name' => 'remember_me',
 				'label' => $form->fieldLabel('remember_me'),
 				'value' => $form->remember_me
-			]*/
+			]
 		]
 	]
 ]);

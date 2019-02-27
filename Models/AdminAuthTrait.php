@@ -8,11 +8,6 @@ use Config\App;
 trait AdminAuthTrait
 {
 
-    protected static function getAuthSessionKey()
-    {
-        return 'admin_id';
-    }
-
     public static function getLoginUrl()
     {
         return 'admin/login';
@@ -27,7 +22,28 @@ trait AdminAuthTrait
     {
         $session = Services::session();
 
-        return $session->get(static::getAuthSessionKey());
+        $admin_id = $session->get('admin_id');
+
+        if ($admin_id)
+        {
+            $token = $session->get('admin_remember_token');
+
+            if ($token)
+            {
+                helper('cookie');
+
+                $cookie = get_cookie('admin_remember_token');
+
+                if ($cookie != $token)
+                {
+                    static::logout();
+
+                    return null;
+                }
+            }
+        }
+
+        return $admin_id;
     }
 
     public static function getCurrentUser()
@@ -49,18 +65,42 @@ trait AdminAuthTrait
         return null;
     }
 
-    public static function login($user, $expire = null)
+    public static function login($user, $rememberMe = true)
     {
         $session = Services::session();
 
-        $session->set(static::getAuthSessionKey(), $user->admin_id);
+        $session->set('admin_id', $user->admin_id);
+
+        if (!$rememberMe)
+        {
+            $token = md5(time() . $session->session_id);
+
+            $session->set('admin_remember_token', $token);
+
+            helper('cookie');
+
+            $appConfig = new App();
+
+            set_cookie(
+                'admin_remember_token',
+                $token,
+                0,
+                $appConfig->cookieDomain,
+                $appConfig->cookiePath,
+                $appConfig->cookiePrefix,
+                false, // only send over HTTPS
+                true // hide from Javascript
+            );
+        }
     }
 
     public static function logout()
     {
         $session = Services::session();
 
-        $session->remove(static::getAuthSessionKey());
+        $session->remove('admin_id');
+
+        $session->remove('admin_remember_token');
     }
 
     public static function encodePassword(string $password)
