@@ -8,8 +8,9 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 	protected $returnType = AdminLoginEntity::class;
 
 	protected $validationRules = [
-		'login' => 'trim|required|min_length[5]|max_length[255]', //valid_email
-		'password' => 'trim|required|max_length[255]'
+		'login' => 'trim|required|min_length[5]|max_length[255]',
+		'password' => 'trim|required|max_length[255]',
+		'remember_me' => 'is_natural'
 	];
 
 	public static function getFieldLabels()
