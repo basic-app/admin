@@ -26,13 +26,13 @@ trait AdminAuthTrait
 
         if ($admin_id)
         {
-            $token = $session->get('admin_remember_token');
+            $token = $session->get('admin_not_remember_token');
 
             if ($token)
             {
                 helper('cookie');
 
-                $cookie = get_cookie('admin_remember_token');
+                $cookie = get_cookie('admin_not_remember_token');
 
                 if ($cookie != $token)
                 {
@@ -75,14 +75,14 @@ trait AdminAuthTrait
         {
             $token = md5(time() . $session->session_id);
 
-            $session->set('admin_remember_token', $token);
+            $session->set('admin_not_remember_token', $token);
 
             helper('cookie');
 
-            $appConfig = new App();
+            $appConfig = new App;
 
             set_cookie(
-                'admin_remember_token',
+                'admin_not_remember_token',
                 $token,
                 0,
                 $appConfig->cookieDomain,
@@ -100,7 +100,7 @@ trait AdminAuthTrait
 
         $session->remove('admin_id');
 
-        $session->remove('admin_remember_token');
+        $session->remove('admin_not_remember_token');
     }
 
     public static function encodePassword(string $password)
