@@ -38,6 +38,8 @@ abstract class BaseLogin extends \BasicApp\Core\AdminController
 
 		$entity = new AdminLoginEntity;
 
+		$entity->remember_me = 1;
+
 		$model = new AdminLoginForm;
 
 		$post = $this->request->getPost();
