@@ -26,13 +26,13 @@ trait AdminAuthTrait
 
         if ($admin_id)
         {
-            $token = $session->get('admin_not_remember_token');
+            $token = $session->get('admin_not_remember_me');
 
             if ($token)
             {
                 helper('cookie');
 
-                $cookie = get_cookie('admin_not_remember_token');
+                $cookie = get_cookie('admin_not_remember_me');
 
                 if ($cookie != $token)
                 {
@@ -75,14 +75,19 @@ trait AdminAuthTrait
         {
             $token = md5(time() . $session->session_id);
 
-            $session->set('admin_not_remember_token', $token);
+            $session->set('admin_not_remember_me', $token);
 
             helper('cookie');
 
             $appConfig = new App;
 
+            // Not working in Chrome, where:
+            //
+            // 1. On Startup = Continue where you left off
+            // 2. Continue running background apps when Google Chrome is closed = On
+
             set_cookie(
-                'admin_not_remember_token',
+                'admin_not_remember_me',
                 $token,
                 0,
                 $appConfig->cookieDomain,
@@ -100,7 +105,7 @@ trait AdminAuthTrait
 
         $session->remove('admin_id');
 
-        $session->remove('admin_not_remember_token');
+        $session->remove('admin_not_remember_me');
     }
 
     public static function encodePassword(string $password)
