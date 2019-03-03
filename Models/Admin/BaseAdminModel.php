@@ -93,7 +93,7 @@ abstract class BaseAdminModel extends \BasicApp\Admin\Models\AdminModel
             [
                 'class' => UploadModelBehavior::class,
                 'modelClass' => static::class, 
-                'path' => FCPATH . 'uploaded/admin-avatars',
+                'path' => FCPATH . 'uploaded/admins',
                 'field' => 'admin_avatar',
                 'inputName' => 'admin_avatar_file',
                 'square' => true

@@ -30,7 +30,7 @@ abstract class BaseAdminEntity extends \BasicApp\Core\Entity
 			return $default;
 		}
 
-		return base_url('uploaded/admin-avatars/' . $this->admin_avatar);
+		return base_url('uploaded/admins/' . $this->admin_avatar);
 	}
 
 }
