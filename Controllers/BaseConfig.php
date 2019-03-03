@@ -57,7 +57,7 @@ abstract class BaseConfig extends \BasicApp\Core\AdminController
             $errors = [];
         }
 
-		return $this->render('Admin/Config/index', [
+		return $this->render('BasicApp\Admin\Config\index', [
 			'model' => $model,
             'modelClass' => $modelClass,
 			'errors' => $errors,
