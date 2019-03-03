@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controllers;
+namespace BasicApp\Admin\Controllers;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
 use StdClass;
