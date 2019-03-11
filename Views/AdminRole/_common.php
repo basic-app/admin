@@ -1,6 +1,6 @@
 <?php
 
-$this->data['optionsMenu']['admin-role']['active'] = true;
+$this->data['mainMenu']['system']['items']['admin-role']['active'] = true;
 
 $this->data['title'] = t('admin', 'Admin Roles');
 

@@ -24,13 +24,10 @@ Events::on('admin_main_menu', function($menu)
             'icon'  => 'fa fa-users'
         ];
     }
-});
 
-Events::on('admin_options_menu', function($menu)
-{
     if (AdminRole::checkAccess())
     {
-        $menu->items['admin-role'] = [
+        $menu->items['system']['items']['admin-role'] = [
             'url'   => site_url('admin/admin-role'),
             'label' => t('admin.menu', 'Admin Roles'),
             'icon'  => 'fa fa-users'
