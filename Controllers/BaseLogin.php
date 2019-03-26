@@ -8,7 +8,7 @@ namespace BasicApp\Admin\Controllers;
 
 use BasicApp\Admin\Models\AdminModel;
 use BasicApp\Admin\Models\AdminLoginForm;
-use BasicApp\Admin\Models\AdminLoginEntity;
+use BasicApp\Admin\Models\AdminLogin;
 use Config\Services;
 
 abstract class BaseLogin extends \BasicApp\Core\AdminController
@@ -36,7 +36,7 @@ abstract class BaseLogin extends \BasicApp\Core\AdminController
     		return Services::response()->redirect($url);
 		}
 
-		$entity = new AdminLoginEntity;
+		$entity = new AdminLogin;
 
 		$entity->remember_me = 1;
 

@@ -10,7 +10,7 @@ abstract class BaseAdminModel extends \BasicApp\Admin\Models\AdminModel
 
     const PASSWORD_REQUIRED = true;
 
-	protected $returnType = AdminEntity::class;
+	protected $returnType = Admin::class;
 
 	protected $allowedFields = [
 		'admin_email',
@@ -76,9 +76,9 @@ abstract class BaseAdminModel extends \BasicApp\Admin\Models\AdminModel
         return $params;
     }
 
-	public static function getFieldLabels()
+	public static function getLabels()
 	{
-		$return = parent::getFieldLabels();
+		$return = parent::getLabels();
 
 		$return['admin_new_password'] = t('admin', 'Password');
 

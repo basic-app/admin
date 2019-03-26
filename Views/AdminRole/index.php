@@ -23,12 +23,12 @@ foreach($elements as $model)
     $rows[] = app_view('BasicApp\Admin\AdminRole\_row', ['model' => $model]);
 }
 
-echo PHPTheme::widget('table', [
+echo admin_theme_widget('table', [
     'head' => [
         'columns' => [
             ['content' => '#', 'options' => ['class' => 'd-none d-sm-table-cell']],
-            ['content' => AdminRoleModel::fieldLabel('role_uid')],
-            ['content' => AdminRoleModel::fieldLabel('role_name'), ['options' => ['class' => 'd-none d-sm-table-cell']]],
+            ['content' => AdminRoleModel::label('role_uid')],
+            ['content' => AdminRoleModel::label('role_name'), ['options' => ['class' => 'd-none d-sm-table-cell']]],
             ['options' => ['colspan' => 2]]
         ]
     ],

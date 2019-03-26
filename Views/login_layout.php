@@ -1,3 +1,3 @@
 <?php
 
-echo PHPTheme::widget('loginLayout', ['content' => $content]);
+echo admin_theme_widget('loginLayout', ['content' => $content]);

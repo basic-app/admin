@@ -2,7 +2,7 @@
 
 namespace BasicApp\Admin\Models\Admin;
 
-abstract class BaseAdminEntity extends \BasicApp\Admin\Models\AdminEntity
+abstract class BaseAdmin extends \BasicApp\Admin\Models\Admin
 {
 
 	protected $modelClass = AdminModel::class;

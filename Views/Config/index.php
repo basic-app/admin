@@ -8,9 +8,9 @@ $this->data['breadcrumbs'][] = ['label' => $title];
 
 $this->data['adminOptionsMenu'][$modelClass]['active'] = true;
 
-echo PHPTheme::widget('card', [
+echo admin_theme_widget('card', [
     'header' => $title,
-    'content' => PHPTheme::widget('form', [
+    'content' => theme_widget('form', [
         'options' => [
             'id' => 'admin-config-form',
             'enctype' => 'multipart/form-data'

@@ -5,6 +5,8 @@ namespace BasicApp\Admin\Models\Admin;
 abstract class BaseAdminRoleModel extends \BasicApp\Admin\Models\AdminRoleModel
 {
 
+    protected $returnType = AdminRole::class;
+
 	protected $allowedFields = [
 		'role_name',
 		'role_uid'

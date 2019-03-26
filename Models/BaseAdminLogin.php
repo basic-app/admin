@@ -2,7 +2,7 @@
 
 namespace BasicApp\Admin\Models;
 
-abstract class BaseAdminLoginEntity extends \BasicApp\Core\Entity
+abstract class BaseAdminLogin extends \BasicApp\Core\Entity
 {
 
 	protected $modelClass = AdminLoginForm::class;

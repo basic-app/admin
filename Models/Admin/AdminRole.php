@@ -2,6 +2,6 @@
 
 namespace BasicApp\Admin\Models\Admin;
 
-class AdminEntity extends BaseAdminEntity
+class AdminRole extends BaseAdminRole
 {
 }

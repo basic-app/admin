@@ -26,17 +26,17 @@ foreach($elements as $model)
 $event = new StdClass;
 
 $event->columns = [
-    ['content' => AdminModel::fieldLabel('admin_id'), 'preset' => 'id small'],
-    ['content' => AdminModel::fieldLabel('admin_created_at'), 'preset' => 'date medium'],
-    ['content' => AdminModel::fieldLabel('admin_name'), 'preset' => 'primary'],
-    ['content' => AdminModel::fieldLabel('admin_email'), 'preset' => 'small']
+    ['content' => AdminModel::label('admin_id'), 'preset' => 'id small'],
+    ['content' => AdminModel::label('admin_created_at'), 'preset' => 'date medium'],
+    ['content' => AdminModel::label('admin_name'), 'preset' => 'primary'],
+    ['content' => AdminModel::label('admin_email'), 'preset' => 'small']
 ];
 
 Events::trigger('admin_admin_table_head', $event);
 
 $event->columns[] = ['options' => ['colspan' => 2]];
 
-echo PHPTheme::widget('table', [
+echo admin_theme_widget('table', [
     'head' => [
         'columns' => $event->columns
     ],

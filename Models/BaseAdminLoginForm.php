@@ -5,7 +5,7 @@ namespace BasicApp\Admin\Models;
 abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 {
 
-	protected $returnType = AdminLoginEntity::class;
+	protected $returnType = AdminLogin::class;
 
 	protected $validationRules = [
 		'login' => 'trim|required|min_length[5]|max_length[255]',
@@ -13,14 +13,13 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 		'remember_me' => 'is_natural'
 	];
 
-	public static function getFieldLabels()
-	{
-		return [
-			'login' => t('admin', 'Login'),
-			'password' => t('admin', 'Password'),
-			'remember_me' => t('admin', 'Remember Me')
-		];
-	}
+    protected $labels = [
+        'login' => 'Login',
+        'password' => 'Password',
+        'remember_me' => 'Remember Me'
+    ];
+
+    protected $translations = 'admin';
 
 	public static function findAdminByLogin($login)
 	{

@@ -2,7 +2,7 @@
 
 $this->data['title'] = t('admin', 'Login');
 
-echo PHPTheme::widget('login', [
+echo admin_theme_widget('login', [
 	'form' => [
 		'buttons' => [
 			'submit' => ['label' => t('admin', 'Sign in')]
@@ -13,19 +13,19 @@ echo PHPTheme::widget('login', [
 			[
 				'type' => 'text',
 				'name' => 'login',
-				'label' => $form->fieldLabel('login'),
+				'label' => $form->label('login'),
 				'value' => $form->login
 			],
 			[
 				'type' => 'password',
 				'name' => 'password',
-				'label' => $form->fieldLabel('password'),
+				'label' => $form->label('password'),
 				'value' => ''
 			],
 			[
 				'type' => 'checkbox',
 				'name' => 'remember_me',
-				'label' => $form->fieldLabel('remember_me'),
+				'label' => $form->label('remember_me'),
 				'value' => $form->remember_me
 			]
 		]

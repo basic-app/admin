@@ -9,7 +9,14 @@ abstract class BaseAdminRoleModel extends \BasicApp\Core\Model
 
 	protected $primaryKey = 'role_id';
 
-	protected $returnType = AdminRoleEntity::class;
+	protected $returnType = AdminRole::class;
+
+    protected $labels = [
+        'role_name' => 'Name',
+        'role_uid' => 'UID'
+    ];
+
+    protected $translations = 'admin-roles';
 
 	public static function getRole(string $uid, bool $create = false, array $params = [])
 	{
@@ -24,14 +31,6 @@ abstract class BaseAdminRoleModel extends \BasicApp\Core\Model
         }
 
         return $return;
-    }
-
-    public static function getFieldLabels()
-    {
-        return [
-            'role_name' => t('admin', 'Role Name'),
-            'role_uid' => t('admin', 'Role UID')
-        ];
     }
 
 	public static function install()

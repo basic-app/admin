@@ -1,22 +1,22 @@
 <?php
 
-echo PHPTheme::widget('formFieldText', [
+echo admin_theme_widget('formFieldText', [
     'errors' => $errors, 
     'name' => 'role_name', 
     'value' => $model->role_name,
-    'label' => $model->fieldLabel('role_name')
+    'label' => $model->label('role_name')
 ]);
 
-echo PHPTheme::widget('formFieldText', [
+echo admin_theme_widget('formFieldText', [
     'errors' => $errors, 
     'name' => 'role_uid', 
     'value' => $model->role_uid,
-    'label' => $model->fieldLabel('role_uid')
+    'label' => $model->label('role_uid')
 ]);
 
-echo PHPTheme::widget('formErrors', ['errors' => $errors]);
+echo admin_theme_widget('formErrors', ['errors' => $errors]);
 
-echo PHPTheme::widget('formButton', [
+echo admin_theme_widget('formButton', [
     'type' => 'submit', 
     'label' => $model->role_id ? t('admin', 'Update') : t('admin', 'Insert')
 ]);
