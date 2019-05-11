@@ -2,9 +2,7 @@
 
 namespace BasicApp\Admin\Database\Migrations;
 
-use CodeIgniter\Database\Migration;
-
-class Migration_create_admin_roles_table extends Migration
+class Migration_create_admin_roles_table extends \BasicApp\Core\Migration
 {
 
 	public $tableName = 'admin_roles';
@@ -12,23 +10,11 @@ class Migration_create_admin_roles_table extends Migration
 	public function up()
 	{
 		$this->forge->addField([
-			'role_id' => [
-				'type' => 'INT',
-				'constraint' => 11,
-				'unsigned' => true,
-				'auto_increment' => true
-			],
-			'role_uid' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255,
-				'unique' => true,
-				'null' => true,
-				'default' => null
-			],
-			'role_name' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255
-			]
+			'role_id' => $this->primaryColumn(),
+			'role_uid' => $this->stringColumn([
+				'unique' => true
+			]),
+			'role_name' => $this->stringColumn()
 		]);
 
 		$this->forge->addKey('role_id', true);

@@ -2,8 +2,8 @@
 
 namespace BasicApp\Admin\Models\Admin;
 
-use BasicApp\Behaviors\UploadModelBehavior;
-use BasicApp\Behaviors\NullModelBehavior;
+use BasicApp\Core\Behaviors\UploadBehavior;
+use BasicApp\Core\Behaviors\NullBehavior;
 
 abstract class BaseAdminModel extends \BasicApp\Admin\Models\AdminModel
 {
@@ -90,15 +90,15 @@ abstract class BaseAdminModel extends \BasicApp\Admin\Models\AdminModel
     public function behaviors() : array
     {
         return [
-            'avatar' => [
-                'class' => UploadModelBehavior::class,
+            'upload_avatar' => [
+                'class' => UploadBehavior::class,
                 'path' => FCPATH . 'uploaded/admins',
                 'field' => 'admin_avatar',
                 'input' => 'admin_avatar_file',
                 'square' => true
             ],
             'null' => [
-                'class' => NullModelBehavior::class, 
+                'class' => NullBehavior::class, 
                 'fields' => [
                     'admin_email'
                 ]

@@ -2,9 +2,7 @@
 
 namespace BasicApp\Admin\Database\Migrations;
 
-use CodeIgniter\Database\Migration;
-
-class Migration_create_admins_table extends Migration
+class Migration_create_admins_table extends \BasicApp\Core\Migration
 {
 
 	public $tableName = 'admins';
@@ -12,45 +10,16 @@ class Migration_create_admins_table extends Migration
 	public function up()
 	{
 		$this->forge->addField([
-			'admin_id' => [
-				'type' => 'INT',
-				'constraint' => 11,
-				'unsigned' => true,
-				'auto_increment' => true
-			],
-			'admin_role_id' => [
-				'type' => 'INT',
-				'constraint' => 11,
-				'unsigned' => true
-			],			
-			'admin_created_at' => [
-				'type' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
-				'null' => true
-			],
-			'admin_updated_at' => [
-				'type' => 'TIMESTAMP NULL',
-				'default' => null
-			],
-			'admin_email' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255,
-				'unique' => true,
-				'null' => true,
-				'default' => null
-			],
-			'admin_name' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255
-			],
-			'admin_password_hash' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255
-			],
-			'admin_avatar' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255,
-				'null' => true
-			]
+			'admin_id' => $this->primaryColumn(),
+			'admin_role_id' => $this->foreignColumn(),			
+			'admin_created_at' => $this->createdColumn(),
+			'admin_updated_at' => $this->updatedColumn(),
+			'admin_email' => $this->stringColumn([
+				'unique' => true
+			]),
+			'admin_name' => $this->stringColumn(),
+			'admin_password_hash' => $this->stringColumn(),
+			'admin_avatar' => $this->stringColumn()
 		]);
 
 		$this->forge->addKey('admin_id', true);
