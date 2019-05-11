@@ -10,7 +10,7 @@ $this->data['adminOptionsMenu'][$modelClass]['active'] = true;
 
 echo admin_theme_widget('card', [
     'header' => $title,
-    'content' => theme_widget('form', [
+    'content' => admin_theme_widget('form', [
         'options' => [
             'id' => 'admin-config-form',
             'enctype' => 'multipart/form-data'
