@@ -4,6 +4,7 @@ namespace BasicApp\Admin\Models;
 
 use Config\Services;
 use Config\App;
+use BasicApp\Admin\Config\AdminConfig;
 
 trait AdminAuthTrait
 {
@@ -110,9 +111,9 @@ trait AdminAuthTrait
 
     public static function encodePassword(string $password)
     {
-        $salt = (new App)->salt;
+        $config = config(AdminConfig::class);
 
-        $password .= $salt;
+        $password .= $config->salt;
 
         return password_hash($password, PASSWORD_BCRYPT);
     }
