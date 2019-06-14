@@ -111,18 +111,14 @@ trait AdminAuthTrait
 
     public static function encodePassword(string $password)
     {
-        $config = config(AdminConfig::class);
-
-        $password .= $config->salt;
+        $password .= static::getSalt();
 
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
     public static function checkPassword(string $password, string $passwordHash)
     {
-        $salt = (new App)->salt;
-
-        $password .= $salt;
+        $password .= static::getSalt();
 
         return password_verify($password, $passwordHash);
     }
@@ -130,6 +126,13 @@ trait AdminAuthTrait
     public static function userHasPermission($user, string $permission)
     {
         return static::userHasRole($user, $permission);
+    }
+
+    public static function getSalt()
+    {
+        $config = config(AdminConfig::class);
+
+        return $config->salt;
     }
 
 }
