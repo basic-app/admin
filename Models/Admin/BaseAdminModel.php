@@ -2,8 +2,8 @@
 
 namespace BasicApp\Admin\Models\Admin;
 
-use BasicApp\Core\Behaviors\UploadBehavior;
-use BasicApp\Core\Behaviors\NullBehavior;
+use BasicApp\Behaviors\UploadBehavior;
+use BasicApp\Behaviors\NullBehavior;
 
 abstract class BaseAdminModel extends \BasicApp\Admin\Models\AdminModel
 {

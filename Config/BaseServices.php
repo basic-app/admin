@@ -9,7 +9,7 @@ use BasicApp\CoolAdminTheme\Theme as AdminTheme;
 abstract class BaseServices extends \CodeIgniter\Config\BaseService
 {
 
-    public static function admin($getShared = false)
+    public static function admin($getShared = true)
     {
         if (!$getShared)
         {
@@ -19,7 +19,7 @@ abstract class BaseServices extends \CodeIgniter\Config\BaseService
         return static::getSharedInstance('admin');
     }
 
-    public static function adminTheme($getShared = false)
+    public static function adminTheme($getShared = true)
     {
         if (!$getShared)
         {

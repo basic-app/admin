@@ -1,6 +1,6 @@
 <?php
 
-use BasicApp\Core\Url;
+use BasicApp\Helpers\Url;
 
 $this->data['title'] = t('admin', 'Login');
 

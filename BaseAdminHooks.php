@@ -1,8 +1,8 @@
 <?php
 /**
- * @package Basic App Admin
+ * @copyright Copyright (c) 2018-2019 Basic App Dev Team
+ * @link http://basic-app.com
  * @license MIT License
- * @link    http://basic-app.com
  */
 namespace BasicApp\Admin;
 
@@ -12,7 +12,7 @@ use BasicApp\Admin\Models\AdminConfigModel;
 use BasicApp\Admin\Controllers\Config as ConfigController;
 use BasicApp\Admin\Controllers\Admin as AdminController;
 use BasicApp\Admin\Controllers\AdminRole as AdminRoleController;
-use BasicApp\Core\Url;
+use BasicApp\Helpers\Url;
 
 abstract class BaseAdminHooks
 {

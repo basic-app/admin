@@ -11,7 +11,7 @@ use BasicApp\Admin\Models\AdminLoginForm;
 use BasicApp\Admin\Models\AdminLogin;
 use Config\Services;
 
-abstract class BaseLogin extends \BasicApp\Core\AdminController
+abstract class BaseLogin extends \BasicApp\Admin\AdminController
 {
 
 	protected $layout = 'login_layout';

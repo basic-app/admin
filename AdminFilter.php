@@ -6,6 +6,6 @@
  */
 namespace BasicApp\Admin;
 
-class AdminHooks extends BaseAdminHooks
+class AdminFilter extends BaseAdminFilter
 {
 }

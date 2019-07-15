@@ -2,11 +2,12 @@
 
 use CodeIgniter\Events\Events;
 use BasicApp\Admin\Models\AdminModel;
+use BasicApp\Helpers\Url;
 
 require __DIR__ . '/_common.php';
 
 $this->data['actionMenu'][] = [
-	'url' => classic_url('admin/admin/create', ['returnUrl' => 'admin/admin']), 
+	'url' => Url::returnUrl('admin/admin/create'), 
 	'label' => t('admin.menu', 'Add Admin'), 
 	'icon' => 'fa fa-plus',
 	'linkOptions' => [

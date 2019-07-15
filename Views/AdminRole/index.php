@@ -2,11 +2,12 @@
 
 use CodeIgniter\Events\Events;
 use BasicApp\Admin\Models\AdminRoleModel;
+use BasicApp\Helpers\Url;
 
 require __DIR__ . '/_common.php';
 
 $this->data['actionMenu'][] = [
-	'url' => classic_url('admin/admin-role/create', ['returnUrl' => 'admin/admin-role']), 
+	'url' => Url::returnUrl('admin/admin-role/create'), 
 	'label' => t('admin.menu', 'Add Role'), 
 	'icon' => 'fa fa-plus',
 	'linkOptions' => [

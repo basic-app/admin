@@ -8,7 +8,7 @@ namespace BasicApp\Admin\Controllers;
 
 use BasicApp\Admin\Models\Admin\AdminModel;
 
-abstract class BaseAdmin extends \BasicApp\Core\AdminCrudController
+abstract class BaseAdmin extends \BasicApp\Admin\AdminCrudController
 {
 
     protected static $roles = [AdminModel::ADMIN_ROLE];

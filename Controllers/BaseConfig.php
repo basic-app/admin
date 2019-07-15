@@ -5,7 +5,7 @@ namespace BasicApp\Admin\Controllers;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use StdClass;
 
-abstract class BaseConfig extends \BasicApp\Core\AdminController
+abstract class BaseConfig extends \BasicApp\Admin\AdminController
 {
 
 	public function index()

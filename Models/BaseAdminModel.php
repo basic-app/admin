@@ -2,7 +2,7 @@
 
 namespace BasicApp\Admin\Models;
 
-use BasicApp\Core\AuthInterface;
+use BasicApp\Interfaces\AuthInterface;
 
 abstract class BaseAdminModel extends \BasicApp\Core\Model implements AuthInterface
 {
