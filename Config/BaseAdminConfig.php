@@ -10,6 +10,8 @@ abstract class BaseAdminConfig extends \BasicApp\Core\DatabaseConfig
 
     public $salt;
 
+    public $adminTheme;
+
     public function __construct()
     {
         parent::__construct();

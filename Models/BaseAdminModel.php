@@ -34,41 +34,6 @@ abstract class BaseAdminModel extends \BasicApp\Core\Model implements AuthInterf
     ];
 
     protected $translations = 'admin';
-    
-	public static function install()
-	{
-		static $installed = false;
-
-		if ($installed)
-		{
-			return;
-		}
-
-		$installed = true;
-
-		AdminRoleModel::install();
-
-		$adminsCount = static::factory()->countAllResults();
-
-		if ($adminsCount > 0)
-		{
-			return;
-		}
-
-		$role = AdminRoleModel::getRole(static::ADMIN_ROLE);
-
-        $model = static::factory();
-
-		$model->protect(false);
-
-		$model->insert([
-			'admin_role_id' => $role->role_id,
-			'admin_name' => 'admin',
-			'admin_password_hash' => static::encodePassword('admin')
-		]);
-
-		$model->protect(true);
-	}
 
     public static function userHasRole($user, string $role)
     {

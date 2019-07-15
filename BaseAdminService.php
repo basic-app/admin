@@ -1,12 +1,16 @@
 <?php
-
-namespace BasicApp\Admin\Components;
+/**
+ * @package Basic App Admin
+ * @license MIT License
+ * @link    http://basic-app.com
+ */
+namespace BasicApp\Admin;
 
 use Config\Services;
-use BasicApp\Core\Events;
+use BasicApp\Admin\AdminEvents;
 use stdClass;
 
-class AdminService extends \BasicApp\Core\Service
+abstract class BaseAdminService extends \BasicApp\Core\Service
 {
 
     public function mainMenu()
@@ -19,7 +23,7 @@ class AdminService extends \BasicApp\Core\Service
 
         $mainMenu->items = [];
 
-        Events::trigger('admin_main_menu', $mainMenu);
+        AdminEvents::trigger(AdminEvents::EVENT_ADMIN_MAIN_MENU, $mainMenu);
 
         $view = Services::renderer();
 
@@ -39,7 +43,7 @@ class AdminService extends \BasicApp\Core\Service
 
         $optionsMenu->items = [];
 
-        Events::trigger('admin_options_menu', $optionsMenu);
+        AdminEvents::trigger(AdminEvents::EVENT_ADMIN_OPTIONS_MENU, $optionsMenu);
 
         $view = Services::renderer();
 

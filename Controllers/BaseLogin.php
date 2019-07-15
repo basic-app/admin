@@ -89,7 +89,7 @@ abstract class BaseLogin extends \BasicApp\Core\AdminController
 		$entity->password = '';
 
 		return $this->render('login', [
-			'form' => $entity,
+			'model' => $entity,
 			'errors' => $errors
 		]);
 	}

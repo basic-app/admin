@@ -1,33 +1,30 @@
 <?php
 
+use BasicApp\Core\Url;
+
 $this->data['title'] = t('admin', 'Login');
 
-echo admin_theme_widget('login', [
-	'form' => [
-		'buttons' => [
-			'submit' => ['label' => t('admin', 'Sign in')]
-		],
-		'action' => site_url('admin/login'),
-		'errors' => $errors,
-		'fields' => [
-			[
-				'type' => 'text',
-				'name' => 'login',
-				'label' => $form->label('login'),
-				'value' => $form->login
-			],
-			[
-				'type' => 'password',
-				'name' => 'password',
-				'label' => $form->label('password'),
-				'value' => ''
-			],
-			[
-				'type' => 'checkbox',
-				'name' => 'remember_me',
-				'label' => $form->label('remember_me'),
-				'value' => $form->remember_me
-			]
-		]
-	]
+$adminTheme = service('adminTheme');
+
+$form = $adminTheme->createForm([
+    'errors' => $errors,
+    'model' => $model
 ]);
+
+$url = Url::createUrl('admin/login');
+
+echo $form->formOpen($url);
+
+echo $form->input('login');
+
+echo $form->password('password');
+
+echo $form->checkbox('remember_me');
+
+$submit = t('admin', 'Sign in');
+
+echo $form->errors();
+
+echo $form->submit($submit);
+
+echo $form->formClose();

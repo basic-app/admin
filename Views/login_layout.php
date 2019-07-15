@@ -1,3 +1,7 @@
 <?php
 
-echo admin_theme_widget('loginLayout', ['content' => $content]);
+$adminTheme = service('adminTheme');
+
+echo $adminTheme->loginLayout([
+    'content' => $content
+]);
