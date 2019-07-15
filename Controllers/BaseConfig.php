@@ -3,7 +3,7 @@
 namespace BasicApp\Admin\Controllers;
 
 use CodeIgniter\Exceptions\PageNotFoundException;
-use StdClass;
+use stdClass;
 
 abstract class BaseConfig extends \BasicApp\Admin\AdminController
 {
@@ -19,9 +19,9 @@ abstract class BaseConfig extends \BasicApp\Admin\AdminController
 
         $messages = [];
 
-        $query = $modelClass::factory();
+        $model = $modelClass::factory();
 
-        $model = $query::createEntity();
+        $row = $model::createEntity();
 
         $post = $this->request->getPost();
 
@@ -29,28 +29,28 @@ abstract class BaseConfig extends \BasicApp\Admin\AdminController
         {
             foreach($post as $key => $value)
             {
-                if (property_exists($model, $key))
+                if (property_exists($row, $key))
                 {
-                    $model->$key = $value;
+                    $row->$key = $value;
                 }
             }
 
-            $object = new StdClass;
+            $publicProperties = [];
 
-            foreach(get_object_vars($model) as $key => $value)
+            foreach(get_object_vars($row) as $key => $value)
             {
-                $object->$key = $value;
+                $publicProperties[$key] = $value;
             }
 
-            if ($query->save($object))
+            if ($model->save($publicProperties))
             {
                 $messages[] = t('admin', 'The changes have been successfully saved.');
             
-                $model = $query::createEntity(); // refresh
+                $row = $model::createEntity(); // refresh
             }
         }
 
-        $errors = $query->getErrors();
+        $errors = $model->errors();
 
         if ($errors === null)
         {
@@ -59,6 +59,7 @@ abstract class BaseConfig extends \BasicApp\Admin\AdminController
 
 		return $this->render('BasicApp\Admin\Config\index', [
 			'model' => $model,
+            'row' => $row,
             'modelClass' => $modelClass,
 			'errors' => $errors,
 			'messages' => $messages

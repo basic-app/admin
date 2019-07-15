@@ -8,7 +8,7 @@ namespace BasicApp\Admin;
 
 use BasicApp\Admin\Models\AdminModel;
 use BasicApp\Admin\Models\AdminRoleModel;
-use BasicApp\Admin\Models\AdminConfigModel;
+use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\Admin\Controllers\Config as ConfigController;
 use BasicApp\Admin\Controllers\Admin as AdminController;
 use BasicApp\Admin\Controllers\AdminRole as AdminRoleController;
@@ -61,10 +61,10 @@ abstract class BaseAdminHooks
     {
         if (ConfigController::checkAccess())
         {
-            $menu->items[AdminConfigModel::class] = [
+            $menu->items[AdminConfigForm::class] = [
                 'label' => t('admin.menu', 'Admin'),
                 'icon' => 'fa fa-users',
-                'url' => Url::createUrl('admin/config', ['class' => AdminConfigModel::class])
+                'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
             ];        
         }
     }

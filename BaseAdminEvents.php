@@ -6,6 +6,8 @@
  */
 namespace BasicApp\Admin;
 
+use BasicApp\Core\Event;
+
 abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 {
 
@@ -29,5 +31,20 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
     {
         static::on(static::EVENT_ADMIN_OPTIONS_MENU, $callback);
     }
+
+    public static function adminThemes($return = [])
+    {
+        // TODO: remove this
+        $return['BasicApp\CoolAdminTheme\Theme'] = 'Cool Admin'; 
+
+        $event = new Event;
+
+        $event->return = $return;
+
+        static::trigger(static::EVENT_ADMIN_THEMES, $event);
+
+        return $event->return;
+    }
+
 
 }

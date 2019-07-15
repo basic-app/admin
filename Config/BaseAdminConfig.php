@@ -4,9 +4,12 @@ namespace BasicApp\Admin\Config;
 
 use Config\App as AppConfig;
 use BasicApp\Core\DatabaseConfigModel;
+use BasicApp\Admin\Forms\AdminConfigForm;
 
 abstract class BaseAdminConfig extends \BasicApp\Core\DatabaseConfig
 {
+
+    protected $modelClass = AdminConfigForm::class;
 
     public $salt;
 
@@ -29,7 +32,7 @@ abstract class BaseAdminConfig extends \BasicApp\Core\DatabaseConfig
                 $this->salt = md5(rand(0, PHP_INT_SIZE) . time() . '' . rand(0, PHP_INT_SIZE));
             }
 
-            DatabaseConfigModel::setValue(static::class, 'salt', $this->salt);
+            AdminConfigForm::setValue(static::class, 'salt', $this->salt);
         }
     }
 

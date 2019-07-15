@@ -4,8 +4,8 @@
  * @license MIT License
  * @link    http://basic-app.com
  */
-namespace BasicApp\Admin\Models;
+namespace BasicApp\Admin\Forms;
 
-class AdminConfigModel extends BaseAdminConfigModel
+class AdminConfigForm extends BaseAdminConfigForm
 {
 }

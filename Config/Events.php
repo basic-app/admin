@@ -1,11 +1,8 @@
 <?php
 
 use BasicApp\Admin\AdminHooks;
-use BasicApp\Core\CoreEvents;
-use BasicApp\Admin\AdminEvents;
-use BasicApp\System\SystemEvents;
 
-CoreEvents::onPreSystem([AdminHooks::class, 'preSystem']);
-SystemEvents::onInstall([AdminHooks::class, 'install']);
-AdminEvents::onAdminOptionsMenu([AdminHooks::class, 'adminOptionsMenu']);
-AdminEvents::onAdminMainMenu([AdminHooks::class, 'adminMainMenu']);
+BasicApp\Core\CoreEvents::onPreSystem([AdminHooks::class, 'preSystem']);
+BasicApp\System\SystemEvents::onInstall([AdminHooks::class, 'install']);
+BasicApp\Admin\AdminEvents::onAdminOptionsMenu([AdminHooks::class, 'adminOptionsMenu']);
+BasicApp\Admin\AdminEvents::onAdminMainMenu([AdminHooks::class, 'adminMainMenu']);
