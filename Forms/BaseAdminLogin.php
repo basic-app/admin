@@ -1,6 +1,6 @@
 <?php
 
-namespace BasicApp\Admin\Models;
+namespace BasicApp\Admin\Forms;
 
 abstract class BaseAdminLogin extends \BasicApp\Core\Entity
 {

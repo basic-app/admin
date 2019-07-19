@@ -6,10 +6,10 @@
  */
 namespace BasicApp\Admin\Controllers;
 
-use BasicApp\Admin\Models\AdminModel;
-use BasicApp\Admin\Models\AdminLoginForm;
-use BasicApp\Admin\Models\AdminLogin;
-use Config\Services;
+use BasicApp\Admins\Models\AdminModel;
+use BasicApp\Admin\Forms\AdminLoginForm;
+use BasicApp\Admin\Forms\AdminLogin;
+use BasicApp\Helpers\Url;
 
 abstract class BaseLogin extends \BasicApp\Admin\AdminController
 {
@@ -31,9 +31,9 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 
 		if ($admin)
 		{
-    		$url = site_url('admin');
+    		$url = Url::createUrl('admin');
 
-    		return Services::response()->redirect($url);
+            return service('response')->redirect($url);
 		}
 
 		$entity = new AdminLogin;
@@ -62,9 +62,9 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 					{
 						AdminModel::login($admin, $entity->remember_me);
 
-						$url = site_url('admin');
+						$url = Url::createUrl('admin');
 
-	    				return Services::response()->redirect($url);
+                        return service('response')->redirect($url);
 					}
 					else
 					{

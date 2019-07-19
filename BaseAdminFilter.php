@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Admin;
 
-use BasicApp\Admin\Models\AdminModel;
+use BasicApp\Admins\Models\AdminModel;
 use BasicApp\Core\AuthFilter;
 
 abstract class BaseAdminFilter extends AuthFilter

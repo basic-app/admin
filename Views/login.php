@@ -23,7 +23,7 @@ echo $form->checkbox('remember_me');
 
 $submit = t('admin', 'Sign in');
 
-echo $form->errors();
+echo $form->renderErrors();
 
 echo $form->submit($submit);
 

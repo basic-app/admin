@@ -1,8 +1,7 @@
 <?php
 
-namespace BasicApp\Admin\Models;
+namespace BasicApp\Admin;
 
-use Config\Services;
 use Config\App;
 use BasicApp\Admin\Config\AdminConfig;
 
@@ -21,7 +20,7 @@ trait AdminAuthTrait
 
     public static function getCurrentUserId()
     {
-        $session = Services::session();
+        $session = service('session');
 
         $admin_id = $session->get('admin_id');
 
@@ -68,7 +67,7 @@ trait AdminAuthTrait
 
     public static function login($user, $rememberMe = true)
     {
-        $session = Services::session();
+        $session = service('session');
 
         $session->set('admin_id', $user->admin_id);
 
@@ -102,7 +101,7 @@ trait AdminAuthTrait
 
     public static function logout()
     {
-        $session = Services::session();
+        $session = service('session');
 
         $session->remove('admin_id');
 

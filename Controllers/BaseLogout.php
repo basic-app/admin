@@ -7,7 +7,8 @@
 namespace BasicApp\Admin\Controllers;
 
 use Config\Services;
-use BasicApp\Admin\Models\AdminModel;
+use BasicApp\Admins\Models\AdminModel;
+use BasicApp\Helpers\Url;
 
 abstract class BaseLogout extends \BasicApp\Core\Controller
 {
@@ -28,7 +29,7 @@ abstract class BaseLogout extends \BasicApp\Core\Controller
 
 		$url = site_url('admin');
 
-    	return Services::response()->redirect($url);
+        return services('response')->redirect($url);
 	}
 
 }

@@ -6,13 +6,13 @@
  */
 namespace BasicApp\Admin;
 
-use BasicApp\Admin\Models\AdminModel;
-use BasicApp\Admin\Models\AdminRoleModel;
-use BasicApp\Admin\Forms\AdminConfigForm;
-use BasicApp\Admin\Controllers\Config as ConfigController;
-use BasicApp\Admin\Controllers\Admin as AdminController;
-use BasicApp\Admin\Controllers\AdminRole as AdminRoleController;
 use BasicApp\Helpers\Url;
+use BasicApp\Configs\Controllers\Admin\Config as ConfigController;
+use BasicApp\Admins\Controllers\Admin\Admin as AdminController;
+use BasicApp\Admins\Controllers\Admin\AdminRole as AdminRoleController;
+use BasicApp\Admins\Models\AdminModel;
+use BasicApp\Admins\Models\AdminRoleModel;
+use BasicApp\Admin\Forms\AdminConfigForm;
 
 abstract class BaseAdminHooks
 {
@@ -37,7 +37,7 @@ abstract class BaseAdminHooks
             return;
         }
 
-        $role = AdminRoleModel::getRole(static::ADMIN_ROLE);
+        $role = AdminRoleModel::getRole(AdminController::ROLE_ADMIN);
 
         $model = AdminModel::factory();
 

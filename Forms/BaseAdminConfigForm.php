@@ -10,7 +10,7 @@ use BasicApp\Admin\AdminEvents;
 use BasicApp\Admin\Config\AdminConfig;
 use BasicApp\Core\Form;
 
-abstract class BaseAdminConfigForm extends \BasicApp\Core\DatabaseConfigModel
+abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
 {
 
     protected $returnType = AdminConfig::class;
@@ -30,7 +30,7 @@ abstract class BaseAdminConfigForm extends \BasicApp\Core\DatabaseConfigModel
         return t('admin.menu', 'Admin');
     }
 
-    public static function renderFields(Form $form)
+    public function renderFields(Form $form)
     {
         $return = '';
 

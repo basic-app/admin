@@ -46,5 +46,57 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         return $event->return;
     }
 
+    public static function mainMenu()
+    {
+        $mainMenu = new Event;
+
+        $mainMenu->items = [];
+
+        AdminEvents::trigger(static::EVENT_ADMIN_MAIN_MENU, $mainMenu);
+
+        $view = service('renderer');
+
+        $data = $view->getData();
+
+        $return = $mainMenu->items;
+
+        if (array_key_exists('mainMenu', $data))
+        {
+            $return = array_merge_recursive($return, $data['mainMenu']);
+        }
+
+        foreach($return as $key => $value)
+        {
+            if (empty($value['url']) || ($value['url'] == '#'))
+            {
+                if (empty($value['items']))
+                {
+                    unset($return[$key]);
+                }
+            }
+        }
+
+        return $return;
+    }
+
+    public static function optionsMenu()
+    {
+        $optionsMenu = new Event;
+
+        $optionsMenu->items = [];
+
+        AdminEvents::trigger(static::EVENT_ADMIN_OPTIONS_MENU, $optionsMenu);
+
+        $view = service('renderer');
+
+        $data = $view->getData();
+
+        if (array_key_exists('optionsMenu', $data))
+        {
+            return array_merge_recursive($optionsMenu->items, $data['optionsMenu']);
+        }
+
+        return $optionsMenu->items;
+    }
 
 }

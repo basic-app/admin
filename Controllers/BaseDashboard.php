@@ -6,12 +6,12 @@
  */
 namespace BasicApp\Admin\Controllers;
 
-use BasicApp\Admin\Models\Admin\AdminModel;
+use BasicApp\Admins\Models\Admin\AdminModel;
 
 abstract class BaseDashboard extends \BasicApp\Admin\AdminController
 {
 
-    protected static $roles = [AdminModel::ADMIN_ROLE];
+    protected static $roles = [self::ROLE_ADMIN];
 
     protected $viewPath = 'BasicApp\Admin\Dashboard';
 

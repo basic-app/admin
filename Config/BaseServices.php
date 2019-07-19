@@ -3,20 +3,21 @@
 namespace BasicApp\Admin\Config;
 
 use BasicApp\Admin\AdminService;
-use stdClass;
+use BasicApp\Admins\Models\AdminModel;
+
 use BasicApp\CoolAdminTheme\Theme as AdminTheme;
 
 abstract class BaseServices extends \CodeIgniter\Config\BaseService
 {
 
-    public static function admin($getShared = true)
+    public static function currentAdmin($getShared = true)
     {
         if (!$getShared)
         {
-            return new AdminService(new stdClass);
+            return AdminModel::getCurrentUser();
         }
 
-        return static::getSharedInstance('admin');
+        return static::getSharedInstance('currentAdmin');   
     }
 
     public static function adminTheme($getShared = true)
