@@ -52,11 +52,6 @@ abstract class BaseAdminHooks
         $model->protect(true);
     }
 
-    public static function preSystem()
-    {
-        helper(['form']);
-    }
-
     public static function adminOptionsMenu($menu)
     {
         if (ConfigController::checkAccess())
@@ -66,27 +61,6 @@ abstract class BaseAdminHooks
                 'icon' => 'fa fa-users',
                 'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
             ];        
-        }
-    }
-
-    public static function adminMainMenu($menu)
-    {
-        if (AdminController::checkAccess())
-        {
-            $menu->items['admin'] = [
-                'url'   => Url::createUrl('admin/admin'),
-                'label' => t('admin.menu', 'Admins'),
-                'icon'  => 'fa fa-users'
-            ];
-        }
-
-        if (AdminRoleController::checkAccess())
-        {
-            $menu->items['system']['items']['admin-role'] = [
-                'url'   => Url::createUrl('admin/admin-role'),
-                'label' => t('admin.menu', 'Admin Roles'),
-                'icon'  => 'fa fa-users'
-            ];
         }
     }
 
