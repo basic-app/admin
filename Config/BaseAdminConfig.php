@@ -43,7 +43,7 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
         }
     }
 
-    public function themeList() : array
+    public function adminThemeList() : array
     {
         $modelClass = $this->modelClass;
 
