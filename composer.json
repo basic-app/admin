@@ -1,5 +1,5 @@
 {
-    "name": "basic-app/module-admin",
+    "name": "basic-app/admin",
     "license": "MIT",
     "autoload": {
         "psr-4": {
