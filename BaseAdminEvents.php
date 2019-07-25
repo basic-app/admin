@@ -15,11 +15,11 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 
     const EVENT_ADMIN_OPTIONS_MENU = 'admin_options_menu';
 
-    const EVENT_ADMIN_THEMES = 'admin_themes';
+    const EVENT_ADMIN_THEME_LIST = 'admin_theme_list';
 
-    public static function onAdminThemes($callback)
+    public static function onAdminThemeList($callback)
     {
-        static::on(static::EVENT_ADMIN_THEMES, $callback);
+        static::on(static::EVENT_ADMIN_THEME_LIST, $callback);
     }
 
     public static function onAdminMainMenu($callback)
@@ -32,18 +32,15 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         static::on(static::EVENT_ADMIN_OPTIONS_MENU, $callback);
     }
 
-    public static function adminThemes($return = [])
+    public static function adminThemeList($return = [])
     {
-        // TODO: remove this
-        $return['BasicApp\CoolAdminTheme\Theme'] = 'Cool Admin'; 
-
         $event = new Event;
 
-        $event->return = $return;
+        $event->result = $return;
 
-        static::trigger(static::EVENT_ADMIN_THEMES, $event);
+        static::trigger(static::EVENT_ADMIN_THEME_LIST, $event);
 
-        return $event->return;
+        return $event->result;
     }
 
     public static function mainMenu()

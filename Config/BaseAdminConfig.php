@@ -34,6 +34,49 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
 
             AdminConfigForm::setValue(static::class, 'salt', $this->salt);
         }
+
+        $list = $this->adminThemeList();
+
+        if (!$this->adminTheme || !array_key_exists($this->theme, $list))
+        {
+            $this->adminTheme = $this->getDefaultAdminTheme();
+        }
+    }
+
+    public function themeList() : array
+    {
+        $modelClass = $this->modelClass;
+
+        return $modelClass::adminThemeList();
+    }
+
+    public function getDefaultTheme() : string
+    {
+        $items = static::adminThemeList();
+
+        if (count($items) > 0)
+        {
+            $items = array_keys($items);
+
+            return array_shift($items);
+        }
+
+        return '';
+    }
+
+    public function getAdminThemeName() : string
+    {
+        if ($this->theme)
+        {
+             $items = static::adminThemeList();
+
+             if (array_key_exists($this->adminTheme, $items))
+             {
+                return $items[$this->adminTheme];
+             }
+        }
+
+        return '';
     }
 
 }

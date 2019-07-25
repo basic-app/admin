@@ -41,7 +41,7 @@ abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
 
     public static function adminThemeList($return = [])
     {
-        return AdminEvents::adminThemes($return);
+        return AdminEvents::adminThemeList($return);
     }
 
 }

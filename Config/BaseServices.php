@@ -3,6 +3,7 @@
 namespace BasicApp\Admin\Config;
 
 use BasicApp\Admins\Models\AdminModel;
+use Exception;
 
 abstract class BaseServices extends \CodeIgniter\Config\BaseService
 {
