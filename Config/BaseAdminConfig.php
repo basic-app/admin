@@ -23,7 +23,7 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
         {
             $appConfig = config(AppConfig::class);
 
-            if (property_exists($appConfig, 'salt') && $appConfig->salt)
+            if (property_exists($appConfig, 'salt'))
             {
                 $this->salt = $appConfig->salt;
             }
