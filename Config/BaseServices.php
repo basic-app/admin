@@ -2,10 +2,7 @@
 
 namespace BasicApp\Admin\Config;
 
-use BasicApp\Admin\AdminService;
 use BasicApp\Admins\Models\AdminModel;
-
-use BasicApp\CoolAdminTheme\Theme as AdminTheme;
 
 abstract class BaseServices extends \CodeIgniter\Config\BaseService
 {
@@ -24,11 +21,18 @@ abstract class BaseServices extends \CodeIgniter\Config\BaseService
     {
         if (!$getShared)
         {
-            $return = new AdminTheme;
+            $config = new AdminConfig;
 
-            $return->baseUrl = '/components/CoolAdmin';
+            $themeClass = $config->adminTheme;
 
-            return $return;
+            if (!$themeClass)
+            {
+                throw new Exception('Admin theme is not defined.');
+            }
+
+            $theme = new $themeClass;
+
+            return $theme;
         }
 
         return static::getSharedInstance('adminTheme');
