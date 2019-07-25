@@ -50,7 +50,7 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
         return $modelClass::adminThemeList();
     }
 
-    public function getDefaultTheme() : string
+    public function getDefaultAdminTheme() : string
     {
         $items = static::adminThemeList();
 
