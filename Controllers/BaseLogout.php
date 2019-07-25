@@ -29,7 +29,7 @@ abstract class BaseLogout extends \BasicApp\Core\Controller
 
 		$url = site_url('admin');
 
-        return services('response')->redirect($url);
+        return service('response')->redirect($url);
 	}
 
 }
