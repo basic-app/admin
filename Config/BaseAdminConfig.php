@@ -37,7 +37,7 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
 
         $list = $this->adminThemeList();
 
-        if (!$this->adminTheme || !array_key_exists($this->theme, $list))
+        if (!$this->adminTheme || !array_key_exists($this->adminTheme, $list))
         {
             $this->adminTheme = $this->getDefaultAdminTheme();
         }
