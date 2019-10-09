@@ -5,8 +5,5 @@
         "psr-4": {
             "BasicApp\\Admin\\": ""
         }
-    },
-    "require": {
-        "basic-app/module-admins": "dev-master"
     }
 }
