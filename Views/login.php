@@ -6,25 +6,18 @@ $this->data['title'] = t('admin', 'Login');
 
 $adminTheme = service('adminTheme');
 
-$form = $adminTheme->createForm([
-    'errors' => $errors,
-    'model' => $model
-]);
+$form = $adminTheme->createForm($model, $errors);
 
-$url = Url::createUrl('admin/login');
+echo $form->open(Url::createUrl('admin/login'));
 
-echo $form->formOpen($url);
+echo $form->inputGroup($data, 'login');
 
-echo $form->input('login');
+echo $form->passwordGroup($data, 'password');
 
-echo $form->password('password');
-
-echo $form->checkbox('remember_me');
-
-$submit = t('admin', 'Sign in');
+echo $form->checkboxGroup($data, 'remember_me');
 
 echo $form->renderErrors();
 
-echo $form->submit($submit);
+echo $form->submit($data, 'submit', t('admin', 'Sign in'));
 
-echo $form->formClose();
+echo $form->close();

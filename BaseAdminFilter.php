@@ -6,10 +6,9 @@
  */
 namespace BasicApp\Admin;
 
-use BasicApp\Admins\Models\AdminModel;
-use BasicApp\Core\AuthFilter;
+use BasicApp\Admin\Models\AdminModel;
 
-abstract class BaseAdminFilter extends AuthFilter
+abstract class BaseAdminFilter extends \BasicApp\Core\AuthFilter
 {
 
     public static function getAuthModelClass()

@@ -1,8 +1,8 @@
 <?php
 /**
- * @package Basic App Admin
- * @license MIT License
- * @link    http://basic-app.com
+ * @author Basic App Dev Team
+ * @license MIT
+ * @link http://basic-app.com
  */
 namespace BasicApp\Admin\Controllers;
 
@@ -20,16 +20,16 @@ abstract class BaseLogout extends \BasicApp\Core\Controller
 
 	public function index()
 	{
-		$admin = AdminModel::getCurrentUser();
+        $adminService = service('admin');
+
+		$admin = $adminService->getUser();
 
 		if ($admin)
 		{
-			AdminModel::logout();
+            $adminService->logout();
 		}
 
-		$url = site_url('admin');
-
-        return service('response')->redirect($url);
+        return $this->redirect(site_url('admin'));
 	}
 
 }

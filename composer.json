@@ -7,6 +7,8 @@
         }
     },
     "require": {
-        "basic-app/service-admin": "dev-master"
+        "basic-app/system": "dev-master",
+        "basic-app/service-admin": "dev-master",
+        "denis303/codeigniter4-user-service": "dev-master"
     }
 }

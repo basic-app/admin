@@ -15,7 +15,7 @@ abstract class BaseAdminController extends Controller
 
     const ROLE_ADMIN = 'admin';
 
-    protected static $authClass = AdminModel::class;
+    protected static $authService = 'admin';
 
     protected static $roles = [self::ROLE_LOGGED];
 

@@ -2,7 +2,7 @@
 
 namespace BasicApp\Admin\Forms;
 
-use BasicApp\Admins\Models\AdminModel;
+//use BasicApp\Admins\Models\AdminModel;
 
 abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 {
@@ -10,8 +10,8 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 	protected $returnType = AdminLogin::class;
 
 	protected $validationRules = [
-		'login' => 'trim|required|min_length[5]|max_length[255]',
-		'password' => 'trim|required|max_length[255]',
+		'login' => 'required|min_length[5]|max_length[255]',
+		'password' => 'required|max_length[255]',
 		'remember_me' => 'is_natural'
 	];
 
@@ -23,6 +23,7 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 
     protected $translations = 'admin';
 
+    /*
 	public static function findAdminByLogin($login)
 	{
 		$query = new AdminModel;
@@ -36,5 +37,6 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 
 		return $model;
 	}
+    */
 
 }

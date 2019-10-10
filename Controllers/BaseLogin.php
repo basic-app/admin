@@ -1,15 +1,15 @@
 <?php
 /**
- * @package Basic App Admin
- * @license MIT License
- * @link    http://basic-app.com
+ * @author Basic App Dev Team
+ * @license MIT
+ * @link http://basic-app.com
  */
 namespace BasicApp\Admin\Controllers;
 
-use BasicApp\Admins\Models\AdminModel;
 use BasicApp\Admin\Forms\AdminLoginForm;
 use BasicApp\Admin\Forms\AdminLogin;
 use BasicApp\Helpers\Url;
+use Exception;
 
 abstract class BaseLogin extends \BasicApp\Admin\AdminController
 {
@@ -27,7 +27,9 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 
 	public function index()
 	{
-		$admin = AdminModel::getCurrentUser();
+        $adminService = service('admin');
+
+		$admin = $adminService->getUser();
 
 		if ($admin)
 		{
@@ -36,9 +38,9 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
             return service('response')->redirect($url);
 		}
 
-		$entity = new AdminLogin;
+		$data = new AdminLogin;
 
-		$entity->remember_me = 1;
+		$data->remember_me = 1;
 
 		$model = new AdminLoginForm;
 
@@ -48,50 +50,48 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 
 		if ($post)
 		{
-			$entity->fill($post);
+			$data->fill($post);
 
-			$valid = $model->validate($entity);
+			$valid = $model->validate($data);
 
 			if ($valid)
 			{
-				$admin = $model::findAdminByLogin($entity->login);
+                $modelClass = $adminService->getModelClass();
 
-				if ($admin)
+				$user = $modelClass::findByLogin($data->login);
+
+				if ($user)
 				{
-					if (AdminModel::checkPassword($entity->password, $admin->admin_password_hash))
+					if ($modelClass::checkPassword($user, $data->password))
 					{
-						AdminModel::login($admin, $entity->remember_me);
+						if (!$adminService->login($user, $data->remember_me, $error))
+                        {
+                            throw new Exception($error);
+                        }
 
 						$url = Url::createUrl('admin');
 
-                        return service('response')->redirect($url);
+                        return $this->redirect($url);
 					}
 					else
 					{
-						// password not correct
-
 						$errors['login'] = t('admin', 'Login or password is incorrect.');
 					}
 				}
 				else
 				{
-					// admin not found
-
-					$errors['login'] = t('admin', 'Login or password is incorrect.');
+					$errors['login'] = t('admin', 'User not found.');
 				}
-			}
-			else
-			{
-				$errors = $model->errors();
 			}
 		}
 
-		$entity->password = '';
+		$data->password = '';
 
 		return $this->render('login', [
-			'model' => $entity,
-			'errors' => $errors
-		]);
+            'model' => $model,
+            'data' => $data,
+            'errors' => array_merge((array) $model->errors(), $errors)
+        ]);
 	}
 
 }
