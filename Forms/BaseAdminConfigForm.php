@@ -16,10 +16,11 @@ abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
     protected $returnType = AdminConfig::class;
 
     protected $validationRules = [
-        'adminTheme' => [
-            'rules' => 'max_length[255]|required',
-            'label' => 'Admin Theme'
-        ]
+        'adminTheme' => 'max_length[255]|required'
+    ];
+
+    protected $labels = [
+        'adminTheme' => 'Admin Theme'
     ];
 
     protected $translations = 'admin';
@@ -33,7 +34,7 @@ abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
     {
         $return = '';
 
-        $return .= $form->dropdown('adminTheme', static::adminThemeList(['' => '...']));
+        $return .= $form->dropdownGroup($this, 'adminTheme', static::adminThemeList(['' => '...']));
 
         return $return;
     }
