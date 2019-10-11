@@ -19,7 +19,7 @@ abstract class BaseAdminController extends Controller
 
     protected static $roles = [self::ROLE_LOGGED];
 
-    protected $layoutPath = 'admin';
+    protected $layoutPath = 'BasicApp\Admin';
 
 	protected $layout = 'layout';
 
