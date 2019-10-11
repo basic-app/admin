@@ -15,7 +15,7 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 
     protected $labels = [
         'login' => 'Login',
-        'password' => 'Password'
+        'password' => 'Password',
         'remember_me' => 'Remember Me'
     ];
 
