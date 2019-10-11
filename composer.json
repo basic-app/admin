@@ -8,6 +8,7 @@
     },
     "require": {
         "basic-app/system": "dev-master",
+        "basic-app/crud": "dev-master",
         "denis303/codeigniter4-user-service": "dev-master"
     }
 }

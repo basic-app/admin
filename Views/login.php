@@ -8,7 +8,7 @@ $adminTheme = service('adminTheme');
 
 $form = $adminTheme->createForm($model, $errors);
 
-echo $form->open(Url::createUrl('admin/login'));
+echo $form->open();
 
 echo $form->inputGroup($data, 'login');
 
@@ -18,6 +18,12 @@ echo $form->checkboxGroup($data, 'remember_me');
 
 echo $form->renderErrors();
 
-echo $form->submit($data, 'submit', t('admin', 'Sign in'));
+$label = t('admin', 'Sign in');
+
+echo $form->beginButtons();
+
+echo $form->submitButton($label);
+
+echo $form->endButtons();
 
 echo $form->close();
