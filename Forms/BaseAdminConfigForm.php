@@ -30,11 +30,11 @@ abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
         return t('admin.menu', 'Admin');
     }
 
-    public function renderFields(Form $form)
+    public function renderForm(Form $form, $data)
     {
         $return = '';
 
-        $return .= $form->dropdownGroup($this, 'adminTheme', static::adminThemeList(['' => '...']));
+        $return .= $form->dropdownGroup($data, 'adminTheme', static::adminThemeList(['' => '...']));
 
         return $return;
     }
