@@ -6,14 +6,9 @@
  */
 namespace BasicApp\Admin;
 
-use BasicApp\Admin\Models\AdminModel;
-
 abstract class BaseAdminFilter extends \BasicApp\Core\AuthFilter
 {
 
-    public static function getAuthModelClass()
-    {
-        return AdminModel::class;
-    }
+    public $userService = 'admin';
 
 }

@@ -17,4 +17,14 @@ abstract class BaseAdminService extends \denis303\codeigniter4\UserService
         return $model::findByPk($id);
     }
 
+    public function getLoginUrl()
+    {
+        return site_url('admin/login');
+    }
+
+    public function getLogoutUrl()
+    {
+        return site_url('admin/logout');
+    }
+
 }
