@@ -6,12 +6,10 @@ use Config\App as AppConfig;
 use BasicApp\Core\DatabaseConfigModel;
 use BasicApp\Admin\Forms\AdminConfigForm;
 
-abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
+abstract class BaseAdmin extends \BasicApp\Config\DatabaseConfig
 {
 
     protected $modelClass = AdminConfigForm::class;
-
-    public $salt;
 
     public $adminTheme;
 
@@ -19,23 +17,7 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
     {
         parent::__construct();
 
-        if (!$this->salt)
-        {
-            $appConfig = config(AppConfig::class);
-
-            if (property_exists($appConfig, 'salt'))
-            {
-                $this->salt = $appConfig->salt;
-            }
-            else
-            {
-                $this->salt = md5(rand(0, PHP_INT_SIZE) . time() . '' . rand(0, PHP_INT_SIZE));
-            }
-
-            AdminConfigForm::setValue(static::class, 'salt', $this->salt);
-        }
-
-        $list = $this->adminThemeList();
+        $list = $this->adminThemes();
 
         if (!$this->adminTheme || !array_key_exists($this->adminTheme, $list))
         {
@@ -43,16 +25,16 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
         }
     }
 
-    public function adminThemeList() : array
+    public function adminThemes() : array
     {
         $modelClass = $this->modelClass;
 
-        return $modelClass::adminThemeList();
+        return $modelClass::adminThemes();
     }
 
     public function getDefaultAdminTheme() : string
     {
-        $items = static::adminThemeList();
+        $items = static::adminThemes();
 
         if (count($items) > 0)
         {
@@ -68,7 +50,7 @@ abstract class BaseAdminConfig extends \BasicApp\Configs\DatabaseConfig
     {
         if ($this->theme)
         {
-             $items = static::adminThemeList();
+             $items = static::adminThemes();
 
              if (array_key_exists($this->adminTheme, $items))
              {

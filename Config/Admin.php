@@ -2,6 +2,6 @@
 
 namespace BasicApp\Admin\Config;
 
-class AdminConfig extends BaseAdminConfig
+class Admin extends BaseAdmin
 {
 }

@@ -3,7 +3,7 @@
 use BasicApp\Admin\AdminEvents;
 use BasicApp\System\SystemEvents;
 use BasicApp\Helpers\Url;
-use BasicApp\Configs\Controllers\Admin\Config as ConfigController;
+use BasicApp\Config\Controllers\Admin\Config as ConfigController;
 use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
 use BasicApp\Admin\AdminFilter;

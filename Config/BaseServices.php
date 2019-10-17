@@ -11,13 +11,13 @@ abstract class BaseServices extends \CodeIgniter\Config\BaseService
     {
         if (!$getShared)
         {
-            $config = new AdminConfig;
+            $config = new Admin;
 
             $themeClass = $config->adminTheme;
 
             if (!$themeClass)
             {
-                throw new Exception('Admin theme is not defined.');
+                throw new Exception('Admin theme not defined.');
             }
 
             $theme = new $themeClass;

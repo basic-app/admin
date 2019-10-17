@@ -7,10 +7,10 @@
 namespace BasicApp\Admin\Forms;
 
 use BasicApp\Admin\AdminEvents;
-use BasicApp\Admin\Config\AdminConfig;
+use BasicApp\Admin\Config\Admin as AdminConfig;
 use BasicApp\Core\Form;
 
-abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
+abstract class BaseAdminConfigForm extends \BasicApp\Config\DatabaseConfigForm
 {
 
     protected $returnType = AdminConfig::class;
@@ -34,14 +34,14 @@ abstract class BaseAdminConfigForm extends \BasicApp\Configs\DatabaseConfigForm
     {
         $return = '';
 
-        $return .= $form->dropdownGroup($data, 'adminTheme', static::adminThemeList(['' => '...']));
+        $return .= $form->dropdownGroup($data, 'adminTheme', static::adminThemes(['' => '...']));
 
         return $return;
     }
 
-    public static function adminThemeList($return = [])
+    public static function adminThemes($return = [])
     {
-        return AdminEvents::adminThemeList($return);
+        return AdminEvents::adminThemes($return);
     }
 
 }
