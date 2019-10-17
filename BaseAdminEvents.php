@@ -11,11 +11,11 @@ use BasicApp\Core\Event;
 abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 {
 
-    const EVENT_ADMIN_MAIN_MENU = 'admin_main_menu';
+    const EVENT_ADMIN_MAIN_MENU = 'ba:admin_main_menu';
 
-    const EVENT_ADMIN_OPTIONS_MENU = 'admin_options_menu';
+    const EVENT_ADMIN_OPTIONS_MENU = 'ba:admin_options_menu';
 
-    const EVENT_ADMIN_THEMES = 'admin_themes';
+    const EVENT_ADMIN_THEMES = 'ba:admin_themes';
 
     public static function onAdminThemes($callback)
     {
