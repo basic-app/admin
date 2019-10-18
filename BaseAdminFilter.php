@@ -6,9 +6,25 @@
  */
 namespace BasicApp\Admin;
 
+use Exception;
+
 abstract class BaseAdminFilter extends \BasicApp\Core\AuthFilter
 {
 
     public $userService = 'admin';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $service = $this->getUserService();
+
+        if (!$service)
+        {
+            $error = 'Admin service not found. Install "basic-app/module-admin" or "basic-app/module-admin-simple" package.';
+
+            throw new Exception($error);
+        }
+    }
 
 }
