@@ -43,7 +43,7 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         return $event->result;
     }
 
-    public static function mainMenu()
+    public static function adminMainMenu()
     {
         $mainMenu = new Event;
 
@@ -76,7 +76,7 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         return $return;
     }
 
-    public static function optionsMenu()
+    public static function adminOptionsMenu()
     {
         $optionsMenu = new Event;
 

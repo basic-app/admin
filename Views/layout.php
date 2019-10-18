@@ -38,10 +38,10 @@ $adminTheme->endBody .= app_view('BasicApp\Admin\layout-body-end');
 
 echo $adminTheme->mainLayout([
     'optionsMenu' => [
-        'items' => AdminEvents::optionsMenu()
+        'items' => AdminEvents::adminOptionsMenu()
     ],
     'mainMenu' => [
-        'items' => AdminEvents::mainMenu()
+        'items' => AdminEvents::adminMainMenu()
     ],
     'title' => array_key_exists('title', $this->data) ? $this->data['title'] : '',
     'actionsMenu' => [
