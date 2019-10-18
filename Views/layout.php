@@ -12,6 +12,8 @@ if (!$admin)
 	throw new Exception('Security check error.');
 }
 
+$adminTheme = service('adminTheme');
+
 $actionMenu = array_key_exists('actionMenu', $this->data) ? $this->data['actionMenu'] : [];
 
 $request = service('request');
@@ -27,8 +29,6 @@ if ($returnUrl)
 		'linkClass' => 'btn btn-secondary',
 	];
 }
-
-$adminTheme = service('adminTheme');
 
 $adminTheme->head .= app_view('BasicApp\Admin\layout-head');
 
