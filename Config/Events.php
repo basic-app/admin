@@ -8,7 +8,7 @@ use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
 use BasicApp\Admin\AdminFilter;
 
-AdminEvents::onAdminOptionsMenu(function($event) {
+AdminEvents::onOptionsMenu(function($event) {
 
     if (ConfigController::checkAccess())
     {
@@ -44,7 +44,7 @@ SystemEvents::onPager(function($event) {
    
 });
 
-AdminEvents::onAdminMainMenu(function($event) {
+AdminEvents::onMainMenu(function($event) {
 
     $event->items['system']['url'] = '#';
     $event->items['system']['label'] = t('admin.menu', 'System');

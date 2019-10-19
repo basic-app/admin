@@ -14,6 +14,8 @@ if (!$admin)
 
 $adminTheme = service('adminTheme');
 
+AdminEvents::registerAssets($adminTheme->head, $adminTheme->beginBody, $adminTheme->endBody);
+
 $actionMenu = array_key_exists('actionMenu', $this->data) ? $this->data['actionMenu'] : [];
 
 $request = service('request');
@@ -38,10 +40,10 @@ $adminTheme->endBody .= app_view('BasicApp\Admin\layout-body-end');
 
 echo $adminTheme->mainLayout([
     'optionsMenu' => [
-        'items' => AdminEvents::adminOptionsMenu()
+        'items' => AdminEvents::optionsMenu()
     ],
     'mainMenu' => [
-        'items' => AdminEvents::adminMainMenu()
+        'items' => AdminEvents::mainMenu()
     ],
     'title' => array_key_exists('title', $this->data) ? $this->data['title'] : '',
     'actionsMenu' => [
@@ -55,7 +57,7 @@ echo $adminTheme->mainLayout([
     'account' => [
         'name' => $admin->admin_name,
         'description' => $admin->admin_email ? $admin->admin_email : '&nbsp;',
-        'avatarUrl' => $admin->avatarUrl(),
+        'avatarUrl' => $admin->getAvatarUrl(),
         'profileUrl' => '#profile',
         'logoutUrl' => Url::createUrl('admin/logout'),
         'logoutLabel' => t('admin', 'Logout')

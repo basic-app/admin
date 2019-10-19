@@ -17,7 +17,7 @@ abstract class BaseServices extends \CodeIgniter\Config\BaseService
 
             if (!$themeClass)
             {
-                throw new Exception('Admin theme not defined.');
+                throw new Exception('Admin theme not found. Install "basic-app/theme-cool-admin" package.');
             }
 
             $theme = new $themeClass;

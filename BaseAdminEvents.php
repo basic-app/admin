@@ -11,45 +11,52 @@ use BasicApp\Core\Event;
 abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 {
 
-    const EVENT_ADMIN_MAIN_MENU = 'ba:admin_main_menu';
+    const EVENT_MAIN_MENU = 'ba:admin_main_menu';
 
-    const EVENT_ADMIN_OPTIONS_MENU = 'ba:admin_options_menu';
+    const EVENT_OPTIONS_MENU = 'ba:admin_options_menu';
 
-    const EVENT_ADMIN_THEMES = 'ba:admin_themes';
+    const EVENT_THEMES = 'ba:admin_themes';
 
-    public static function onAdminThemes($callback)
+    const EVENT_REGISTER_ASSETS = 'ba:admin_register_assets';
+
+    public static function onThemes($callback)
     {
-        static::on(static::EVENT_ADMIN_THEMES, $callback);
+        static::on(static::EVENT_THEMES, $callback);
     }
 
-    public static function onAdminMainMenu($callback)
+    public static function onRegisterAssets($callback)
     {
-        static::on(static::EVENT_ADMIN_MAIN_MENU, $callback);
+        static::on(static::EVENT_REGISTER_ASSETS, $callback);
+    }    
+
+    public static function onMainMenu($callback)
+    {
+        static::on(static::EVENT_MAIN_MENU, $callback);
     }
 
-    public static function onAdminOptionsMenu($callback)
+    public static function onOptionsMenu($callback)
     {
-        static::on(static::EVENT_ADMIN_OPTIONS_MENU, $callback);
+        static::on(static::EVENT_OPTIONS_MENU, $callback);
     }
 
-    public static function adminThemes($return = [])
+    public static function themes($return = [])
     {
         $event = new Event;
 
         $event->result = $return;
 
-        static::trigger(static::EVENT_ADMIN_THEMES, $event);
+        static::trigger(static::EVENT_THEMES, $event);
 
         return $event->result;
     }
 
-    public static function adminMainMenu()
+    public static function mainMenu()
     {
         $mainMenu = new Event;
 
         $mainMenu->items = [];
 
-        AdminEvents::trigger(static::EVENT_ADMIN_MAIN_MENU, $mainMenu);
+        static::trigger(static::EVENT_MAIN_MENU, $mainMenu);
 
         $view = service('renderer');
 
@@ -76,13 +83,13 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         return $return;
     }
 
-    public static function adminOptionsMenu()
+    public static function optionsMenu()
     {
         $optionsMenu = new Event;
 
         $optionsMenu->items = [];
 
-        AdminEvents::trigger(static::EVENT_ADMIN_OPTIONS_MENU, $optionsMenu);
+        static::trigger(static::EVENT_OPTIONS_MENU, $optionsMenu);
 
         $view = service('renderer');
 
@@ -94,6 +101,25 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         }
 
         return $optionsMenu->items;
+    }
+
+    public static function registerAssets(&$head, &$beginBody, &$endBody)
+    {
+        $event = new Event;
+
+        $event->head = $head;
+
+        $event->beginBody = $beginBody;
+
+        $event->endBody = $endBody;
+
+        static::trigger(static::EVENT_REGISTER_ASSETS, $event);
+
+        $head = $event->head;
+
+        $beginBody = $event->beginBody;
+
+        $endBody = $event->endBody;
     }
 
 }
