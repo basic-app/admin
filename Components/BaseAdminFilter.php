@@ -1,14 +1,14 @@
 <?php
 /**
- * @copyright Copyright (c) 2018-2019 Basic App Dev Team
+ * @author Basic App Dev Team
+ * @license MIT
  * @link http://basic-app.com
- * @license MIT License
  */
 namespace BasicApp\Admin\Components;
 
 use Exception;
 
-abstract class BaseAdminFilter extends \BasicApp\Core\AuthFilter
+abstract class BaseAdminFilter extends \BasicApp\Filters\AuthFilter
 {
 
     public $userService = 'admin';
@@ -21,7 +21,7 @@ abstract class BaseAdminFilter extends \BasicApp\Core\AuthFilter
 
         if (!$service)
         {
-            $error = 'Admin service not found. Install "basic-app/module-admin" or "basic-app/module-admin-simple" package.';
+            $error = 'Admin service is required.';
 
             throw new Exception($error);
         }
