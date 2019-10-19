@@ -17,12 +17,12 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 		'remember_me' => 'is_natural'
 	];
 
-    protected $labels = [
+    protected $fieldLabels = [
         'login' => 'Login',
         'password' => 'Password',
         'remember_me' => 'Remember Me'
     ];
 
-    protected $translations = 'admin';
+    protected $langCategory = 'admin';
 
 }

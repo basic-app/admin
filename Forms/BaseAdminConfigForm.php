@@ -19,16 +19,11 @@ abstract class BaseAdminConfigForm extends \BasicApp\Config\BaseConfigForm
         'adminTheme' => 'max_length[255]|required'
     ];
 
-    protected $labels = [
+    protected $fieldLabels = [
         'adminTheme' => 'Admin Theme'
     ];
 
-    protected $translations = 'admin';
-
-    public static function getFormName()
-    {
-        return t('admin.menu', 'Admin');
-    }
+    protected $langCategory = 'admin';
 
     public function renderForm(Form $form, $data)
     {
