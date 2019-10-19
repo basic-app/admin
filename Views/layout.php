@@ -32,12 +32,6 @@ if ($returnUrl)
 	];
 }
 
-$adminTheme->head .= app_view('BasicApp\Admin\layout-head');
-
-$adminTheme->beginBody .= app_view('BasicApp\Admin\layout-body-begin');
-
-$adminTheme->endBody .= app_view('BasicApp\Admin\layout-body-end');
-
 echo $adminTheme->mainLayout([
     'optionsMenu' => [
         'items' => AdminEvents::optionsMenu()
