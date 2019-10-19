@@ -13,6 +13,8 @@ abstract class BaseAdmin extends \BasicApp\Config\DatabaseConfig
 
     public $adminTheme;
 
+    public $admins = [];
+
     public function __construct()
     {
         parent::__construct();

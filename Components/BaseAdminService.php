@@ -3,7 +3,7 @@
  * @author Basic App Dev Team
  * @license MIT
  */
-namespace BasicApp\Admin;
+namespace BasicApp\Admin\Components;
 
 abstract class BaseAdminService extends \denis303\codeigniter4\UserService
 {

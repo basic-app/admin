@@ -6,7 +6,7 @@ use BasicApp\Helpers\Url;
 use BasicApp\Config\Controllers\Admin\Config as ConfigController;
 use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
-use BasicApp\Admin\AdminFilter;
+use BasicApp\Admin\Components\AdminFilter;
 
 AdminEvents::onOptionsMenu(function($event) {
 

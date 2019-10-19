@@ -4,7 +4,7 @@
  * @link http://basic-app.com
  * @license MIT License
  */
-namespace BasicApp\Admin;
+namespace BasicApp\Admin\Components;
 
 class AdminFilter extends BaseAdminFilter
 {
