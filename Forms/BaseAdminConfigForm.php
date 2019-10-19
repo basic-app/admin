@@ -10,7 +10,7 @@ use BasicApp\Admin\AdminEvents;
 use BasicApp\Admin\Config\Admin as AdminConfig;
 use BasicApp\Core\Form;
 
-abstract class BaseAdminConfigForm extends \BasicApp\Config\DatabaseConfigForm
+abstract class BaseAdminConfigForm extends \BasicApp\Config\BaseConfigForm
 {
 
     protected $returnType = AdminConfig::class;

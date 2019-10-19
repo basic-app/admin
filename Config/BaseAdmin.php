@@ -6,7 +6,7 @@ use Config\App as AppConfig;
 use BasicApp\Core\DatabaseConfigModel;
 use BasicApp\Admin\Forms\AdminConfigForm;
 
-abstract class BaseAdmin extends \BasicApp\Config\DatabaseConfig
+abstract class BaseAdmin extends \BasicApp\Config\BaseConfig
 {
 
     protected $modelClass = AdminConfigForm::class;
