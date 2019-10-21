@@ -12,6 +12,8 @@ use BasicApp\Admin\Config\Admin as AdminConfig;
 abstract class BaseAdminModel extends \CodeIgniter\Model
 {
 
+    const ROLE_ADMIN = 'admin';
+
     protected $primaryKey = 'name';
 
     public static $_admins;
