@@ -33,19 +33,11 @@ if ($returnUrl)
 }
 
 echo $adminTheme->mainLayout([
-    'optionsMenu' => [
-        'items' => AdminEvents::optionsMenu()
-    ],
-    'mainMenu' => [
-        'items' => AdminEvents::mainMenu()
-    ],
+    'optionsMenu' => AdminEvents::optionsMenu(),
+    'mainMenu' => AdminEvents::mainMenu(),
     'title' => array_key_exists('title', $this->data) ? $this->data['title'] : '',
-    'actionsMenu' => [
-        'items' => $actionMenu
-    ],
-    'breadcrumbs' => [
-        'items' => array_key_exists('breadcrumbs', $this->data) ? $this->data['breadcrumbs'] : []
-    ],
+    'actionMenu' => $actionMenu,
+    'breadcrumbs' => array_key_exists('breadcrumbs', $this->data) ? $this->data['breadcrumbs'] : [],
     'content' => $content,
     'copyright' => 'Copyright © 2018 - {year} <a href="' . base_url() . '" target="_blank">My App</a>.' . ' All rights reserved.',
     'account' => [

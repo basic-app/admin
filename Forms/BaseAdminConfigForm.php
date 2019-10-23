@@ -23,6 +23,10 @@ abstract class BaseAdminConfigForm extends \BasicApp\Config\BaseConfigForm
         'adminTheme' => 'Admin Theme'
     ];
 
+    protected $allowedFields = [
+        'adminTheme'
+    ];
+
     protected $langCategory = 'admin';
 
     public function renderForm(Form $form, $data)
