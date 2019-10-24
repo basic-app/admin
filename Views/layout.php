@@ -39,7 +39,7 @@ echo $adminTheme->mainLayout([
     'actionMenu' => $actionMenu,
     'breadcrumbs' => array_key_exists('breadcrumbs', $this->data) ? $this->data['breadcrumbs'] : [],
     'content' => $content,
-    'copyright' => 'Copyright © 2018 - {year} <a href="' . base_url() . '" target="_blank">My App</a>.' . ' All rights reserved.',
+    'copyright' => 'Copyright © <a href="http://basic-app.com" target="_blank">Basic App</a> 2018 – ' . date('Y'), // Don't change it! According of the MIT license.
     'account' => [
         'name' => $admin->admin_name,
         'description' => $admin->admin_email ? $admin->admin_email : '&nbsp;',
