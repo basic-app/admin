@@ -16,7 +16,7 @@ abstract class BaseAdmin extends \CodeIgniter\Entity
             return $default;
         }
 
-        return base_url('uploaded/admins/' . $this->avatar);
+        return base_url($this->avatar);
     }
 
 }
