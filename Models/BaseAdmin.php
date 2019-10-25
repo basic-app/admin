@@ -9,7 +9,17 @@ namespace BasicApp\Admin\Models;
 abstract class BaseAdmin extends \CodeIgniter\Entity
 {
 
-    public function getAvatarUrl($default = null)
+    public function getUserName()
+    {
+        return $this->name;
+    }
+
+    public function getUserEmail()
+    {
+        return $this->email;
+    }
+
+    public function getUserAvatarUrl($default = null)
     {
         if (!$this->avatar)
         {
