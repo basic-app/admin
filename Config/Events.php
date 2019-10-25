@@ -16,15 +16,9 @@ AdminEvents::onOptionsMenu(function($event) {
 
     if (ConfigController::checkAccess())
     {
-        $event->items[SystemConfigForm::class] = [
-            'label' => t('admin.menu', 'System'),
-            'icon' => 'fa fa-desktop',
-            'url' => Url::createUrl('admin/config', ['class' => SystemConfigForm::class])
-        ];
-
         $event->items[AdminConfigForm::class] = [
             'label' => t('admin.menu', 'Admin'),
-            'icon' => 'fa fa-users',
+            'icon' => 'fa fa-user',
             'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
         ];        
     }
