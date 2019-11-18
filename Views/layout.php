@@ -32,6 +32,8 @@ if ($returnUrl)
 	];
 }
 
+$session = service('session');
+
 echo $adminTheme->mainLayout([
     'optionsMenu' => AdminEvents::optionsMenu(),
     'mainMenu' => AdminEvents::mainMenu(),
@@ -47,5 +49,8 @@ echo $adminTheme->mainLayout([
         'profileUrl' => '#profile',
         'logoutUrl' => Url::createUrl('admin/logout'),
         'logoutLabel' => t('admin', 'Logout')
-    ]
+    ],
+    'successMessages' => (array) $session->getFlashdata('success'),
+    'errorMessages' => (array) $session->getFlashdata('error'),
+    'infoMessages' => (array) $session->getFlashdata('info')    
 ]);
