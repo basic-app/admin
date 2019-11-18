@@ -12,8 +12,8 @@ use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
 use BasicApp\Admin\Components\AdminFilter;
 
-AdminEvents::onOptionsMenu(function($event) {
-
+AdminEvents::onOptionsMenu(function($event)
+{
     if (ConfigController::checkAccess())
     {
         $event->items[AdminConfigForm::class] = [
@@ -22,30 +22,25 @@ AdminEvents::onOptionsMenu(function($event) {
             'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
         ];        
     }
-
 });
 
 SystemEvents::onFilters(function($event)
 {
+    $event->aliases['adminIsLoggedIn'] = AdminFilter::class;
 
-    $event->config->aliases['adminIsLoggedIn'] = AdminFilter::class;
-
-    $event->config->filters['adminIsLoggedIn'] = [
+    $event->filters['adminIsLoggedIn'] = [
         'before' => ['/admin/', '/admin/*']
-    ];
-    
+    ];   
 });
 
-SystemEvents::onPager(function($event) {
-
-   $event->config->templates['adminTheme'] = 'BasicApp\Admin\pager';
-   
+SystemEvents::onPager(function($event)
+{
+   $event->templates['adminTheme'] = 'BasicApp\Admin\pager';  
 });
 
-AdminEvents::onMainMenu(function($event) {
-
+AdminEvents::onMainMenu(function($event)
+{
     $event->items['system']['url'] = '#';
     $event->items['system']['label'] = t('admin.menu', 'System');
     $event->items['system']['icon'] = 'fa fa-wrench';
-
 });
