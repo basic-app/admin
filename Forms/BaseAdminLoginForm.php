@@ -12,9 +12,9 @@ abstract class BaseAdminLoginForm extends \BasicApp\Core\Model
 	protected $returnType = AdminLogin::class;
 
 	protected $validationRules = [
-		'login' => 'required|min_length[5]|max_length[255]',
-		'password' => 'required|max_length[255]',
-		'remember_me' => 'is_natural'
+		'login' => 'not_special_chars|min_length[5]|max_length[255]|required',
+		'password' => 'max_length[255]|required',
+		'remember_me' => 'in_list[0,1]'
 	];
 
     protected $fieldLabels = [
