@@ -8,9 +8,9 @@ $adminTheme = service('adminTheme');
 
 $form = $adminTheme->createForm($model, $errors);
 
-echo $form->open();
+echo $form->open('', ['autocomplete' => '!off']);
 
-echo $form->inputGroup($data, 'login');
+echo $form->inputGroup($data, 'login', ['autofocus' => true]);
 
 echo $form->passwordGroup($data, 'password');
 
