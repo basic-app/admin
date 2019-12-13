@@ -16,7 +16,7 @@ abstract class BaseAdminConfigForm extends \BasicApp\Config\BaseConfigForm
     protected $returnType = AdminConfig::class;
 
     protected $validationRules = [
-        'adminTheme' => 'not_special_chars|max_length[255]|required'
+        'adminTheme' => 'not_special_chars|max_length[255]'
     ];
 
     protected $fieldLabels = [
