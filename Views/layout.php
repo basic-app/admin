@@ -35,6 +35,7 @@ if ($returnUrl)
 $session = service('session');
 
 echo $adminTheme->mainLayout([
+    'homeUrl' => Url::createUrl('admin'),
     'optionsMenu' => AdminEvents::optionsMenu(),
     'mainMenu' => AdminEvents::mainMenu(),
     'title' => array_key_exists('title', $this->data) ? $this->data['title'] : '',
