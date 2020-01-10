@@ -1,15 +1,13 @@
 <?php
 /**
- * @author Basic App Dev Team
+ * @author Basic App Dev Team <dev@basic-app.com>
  * @license MIT
  * @link http://basic-app.com
  */
 namespace BasicApp\Admin\Config;
 
 use Exception;
-use Config\App as AppConfig;
-use BasicApp\Admin\Components\AdminService;
-use BasicApp\Admin\Models\AdminModel;
+use BasicApp\Admin\Libraries\AdminService;
 
 abstract class BaseServices extends \CodeIgniter\Config\BaseService
 {
@@ -18,13 +16,7 @@ abstract class BaseServices extends \CodeIgniter\Config\BaseService
     {
         if (!$getShared)
         {
-            $session = service('session');
-
-            $appConfig = config(AppConfig::class);
-
-            $adminService = new AdminService(AdminModel::class, $session, $appConfig);
-
-            return $adminService;
+            return new AdminService('admin_id');
         }
 
         return static::getSharedInstance(__FUNCTION__);

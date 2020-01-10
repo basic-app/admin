@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Basic App Dev Team
+ * @author Basic App Dev Team <dev@basic-app.com>
  * @license MIT
  * @link http://basic-app.com
  */
@@ -16,16 +16,16 @@ class BaseAdminCrudController extends AdminController
 
     use CreateCrudActionTrait;
 
-	protected $modelClass;
+    protected $modelClass;
 
-	protected $searchModelClass;
+    protected $searchModelClass;
 
-	protected $perPage;
+    protected $perPage;
 
-	protected $orderBy;
+    protected $orderBy;
 
     protected $primaryKey;
 
-	protected $parentKey;
+    protected $parentKey;
     
 }

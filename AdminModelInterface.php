@@ -4,8 +4,11 @@
  * @license MIT
  * @link http://basic-app.com
  */
-namespace BasicApp\Admin\Config;
+namespace BasicApp\Admin;
 
-class Admin extends BaseAdmin
+interface AdminModelInterface
 {
+
+    public function getPrimaryKey();
+
 }

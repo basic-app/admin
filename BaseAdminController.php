@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Basic App Dev Team
+ * @author Basic App Dev Team <dev@basic-app.com>
  * @license MIT
  * @link http://basic-app.com
  */
@@ -21,13 +21,13 @@ abstract class BaseAdminController extends Controller
 
     protected $layoutPath = 'BasicApp\Admin';
 
-	protected $layout = 'layout';
+    protected $layout = 'layout';
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		Events::trigger('admin_controller_constructor');
-	}
+        Events::trigger('admin_controller_constructor');
+    }
 
 }

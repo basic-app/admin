@@ -1,15 +1,13 @@
 <?php
 /**
- * @author Basic App Dev Team
+ * @author Basic App Dev Team <dev@basic-app.com>
  * @license MIT
  * @link http://basic-app.com
  */
-namespace BasicApp\Admin\Components;
+namespace BasicApp\Admin\Libraries;
 
-abstract class BaseAdminService extends \denis303\codeigniter4\UserService
+abstract class BaseAdminService extends \Denis303\Auth\AuthService
 {
-
-    const ID_SESSION = 'ba_admin';
 
     public function findUserById($id)
     {
