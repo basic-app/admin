@@ -6,6 +6,7 @@
  */
 namespace BasicApp\Admin\Controllers;
 
+use BasicApp\Admin\Models\AdminModel;
 use BasicApp\Admin\Forms\AdminLoginForm;
 use BasicApp\Admin\Forms\AdminLogin;
 use BasicApp\Helpers\Url;
@@ -19,6 +20,15 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 	protected $viewPath = 'BasicApp\Admin';
 
 	protected $layoutPath = 'BasicApp\Admin';
+
+    protected $adminModel;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->adminModel = new AdminModel;
+    }
 
     public static function checkAccess(bool $throwExceptions = false)
     {
@@ -56,18 +66,13 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 
 			if ($valid)
 			{
-                $modelClass = $adminService->getModelClass();
-
-				$user = $modelClass::findByLogin($data->login);
+                $user = $this->adminModel->findByLogin($data->login);
 
 				if ($user)
 				{
-					if ($modelClass::checkPassword($user, $data->password))
+					if ($this->adminModel->checkPassword($user, $data->password))
 					{
-						if (!$adminService->login($user, $data->remember_me, $error))
-                        {
-                            throw new Exception($error);
-                        }
+                        $adminService->login($user, $data->remember_me);
 
 						$url = Url::createUrl('admin');
 

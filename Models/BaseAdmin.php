@@ -6,20 +6,24 @@
  */
 namespace BasicApp\Admin\Models;
 
-abstract class BaseAdmin extends \CodeIgniter\Entity
+use BasicApp\Admin\AdminInterface;
+
+abstract class BaseAdmin extends \CodeIgniter\Entity implements AdminInterface
 {
 
-    public function getUserName()
+    public $attributes = [
+        'name' => null,
+        'avatar' => null,
+        'email' => null,
+        'roles' => []
+    ];
+
+    public function getPrimaryKey()
     {
         return $this->name;
     }
 
-    public function getUserEmail()
-    {
-        return $this->email;
-    }
-
-    public function getUserAvatarUrl($default = null)
+    public function getAvatarUrl($default = null)
     {
         if (!$this->avatar)
         {
@@ -28,5 +32,44 @@ abstract class BaseAdmin extends \CodeIgniter\Entity
 
         return base_url($this->avatar);
     }
+
+    public function hasRole($roles) : bool
+    {
+        if (is_array($this->roles))
+        {
+            $roles = (array) $roles;
+
+            foreach($roles as $role)
+            {
+                if (array_search($role, $this->roles) !== false)
+                {
+                    return true;   
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function getRoles() : array
+    {
+        return $this->attributes['roles'];
+    }
+
+    public function getName()
+    {
+        return $this->attributes['name'];
+    }
+
+    public function getEmail()
+    {
+        return $this->attributes['email'];
+    }
+
+    public function getDescription()
+    {
+        return null;
+    }
+
 
 }

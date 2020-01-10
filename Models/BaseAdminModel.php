@@ -8,8 +8,9 @@ namespace BasicApp\Admin\Models;
 
 use Exception;
 use BasicApp\Admin\Config\Admin as AdminConfig;
+use BasicApp\Admin\AdminModelInterface;
 
-abstract class BaseAdminModel extends \CodeIgniter\Model
+abstract class BaseAdminModel extends \CodeIgniter\Model implements AdminModelInterface
 {
 
     const ROLE_ADMIN = 'admin';
@@ -18,7 +19,7 @@ abstract class BaseAdminModel extends \CodeIgniter\Model
 
     public static $_admins;
 
-    public static function findByPk($id)
+    public function findByField($field, $value)
     {
         if (static::$_admins === null)
         {
@@ -39,38 +40,33 @@ abstract class BaseAdminModel extends \CodeIgniter\Model
 
         foreach(static::$_admins as $admin)
         {
-            if ($admin->name == $id)
+            if ($admin->{$field} == $value)
             {
                 return $admin;
             }
         }
 
-        return null;    
+        return null;        
     }
 
-    public static function findByLogin($login)
+    public function find($id = null)
     {
-        return static::findByPk($login);
+        return $this->findByField($this->primaryKey, $id);
     }
 
-    public static function encodePassword($data, $password)
+    public function findByLogin($login)
+    {
+        return $this->findByField($this->primaryKey, $login);
+    }
+
+    public function encodePassword($data, $password)
     {
         return $password;
     }
 
-    public static function checkPassword($data, $password)
+    public function checkPassword($data, $password)
     {
         return $password === $data->password;
-    }
-
-    public static function userHasRole($user, $role)
-    {
-        if (array_search($role, $user->roles) !== false)
-        {
-            return true;
-        }
-
-        return false;
     }
 
 }

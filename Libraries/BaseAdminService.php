@@ -6,14 +6,54 @@
  */
 namespace BasicApp\Admin\Libraries;
 
-abstract class BaseAdminService extends \Denis303\Auth\AuthService
+use Denis303\Auth\UserService;
+use BasicApp\Admin\AdminServiceInterface;
+use BasicApp\Admin\AdminInterface;
+use Exception;
+use BasicApp\Admin\Models\AdminModel;
+
+abstract class BaseAdminService extends UserService implements AdminServiceInterface
 {
 
-    public function findUserById($id)
-    {
-        $model = new $this->_modelClass;
+    protected $_user;
 
-        return $model::findByPk($id);
+    public function getUser()
+    {
+        if (!$this->_user)
+        {
+            $userId = $this->getUserId();
+
+            if ($userId)
+            {
+                $adminModel = new AdminModel;
+
+                $this->_user = $adminModel->find($userId);
+
+                if (!$this->_user)
+                {
+                    $this->unsetUserId();
+                }                
+            }
+        }
+
+        return $this->_user;
+    }
+
+    public function login(AdminInterface $user, bool $rememberMe = true)
+    {
+        $id = $user->getPrimaryKey();
+
+        if (!$id)
+        {
+            throw new Exception('Primary key not defined.');
+        }
+
+        $this->setUserId($id, $rememberMe);
+    }
+
+    public function logout()
+    {
+        $this->unsetUserId();
     }
 
     public function getLoginUrl()

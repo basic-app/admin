@@ -6,8 +6,12 @@
  */
 namespace BasicApp\Admin;
 
-interface AdminServiceInterface extends \Denis303\Auth\AuthServiceInterface
+use Denis303\Auth\UserServiceInterface;
+
+interface AdminServiceInterface extends UserServiceInterface
 {
+
+    public function getUser();
 
     public function getLoginUrl();
 
@@ -15,6 +19,6 @@ interface AdminServiceInterface extends \Denis303\Auth\AuthServiceInterface
 
     public function logout();
 
-    public function login(AdminModelInterface $user, bool $rememberMe = true);
+    public function login(AdminInterface $user, bool $rememberMe = true);
 
 }

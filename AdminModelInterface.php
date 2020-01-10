@@ -8,7 +8,4 @@ namespace BasicApp\Admin;
 
 interface AdminModelInterface
 {
-
-    public function getPrimaryKey();
-
 }
