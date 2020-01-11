@@ -9,7 +9,7 @@ $admin = $adminService->getUser();
 
 if (!$admin)
 {
-	throw new Exception('Security check error.');
+    throw new Exception('Security check error.');
 }
 
 $adminTheme = service('adminTheme');
@@ -24,12 +24,12 @@ $returnUrl = $request->getGet('returnUrl');
 
 if ($returnUrl)
 {
-	$actionMenu[] = [
-		'url'       => Url::createUrl($returnUrl),
-		'label'     => t('admin.menu', 'Back'),
-		'icon'      => 'fa fa-arrow-left',
-		'linkClass' => 'btn btn-secondary',
-	];
+    $actionMenu[] = [
+        'url'       => Url::createUrl($returnUrl),
+        'label'     => t('admin.menu', 'Back'),
+        'icon'      => 'fa fa-arrow-left',
+        'linkClass' => 'btn btn-secondary',
+    ];
 }
 
 $session = service('session');

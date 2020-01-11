@@ -40,6 +40,10 @@ SystemEvents::onPager(function($event)
 
 AdminEvents::onMainMenu(function($event)
 {
+    $event->items['site']['url'] = '#';
+    $event->items['site']['label'] = t('admin.menu', 'Site');
+    $event->items['site']['icon'] = 'fa fa-bars';
+
     $event->items['system']['url'] = '#';
     $event->items['system']['label'] = t('admin.menu', 'System');
     $event->items['system']['icon'] = 'fa fa-wrench';
