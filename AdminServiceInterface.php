@@ -11,6 +11,8 @@ use Denis303\Auth\UserServiceInterface;
 interface AdminServiceInterface extends UserServiceInterface
 {
 
+    public function can($permission) : bool;
+
     public function getUser();
 
     public function getLoginUrl();

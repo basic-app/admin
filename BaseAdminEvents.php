@@ -6,10 +6,16 @@
  */
 namespace BasicApp\Admin;
 
-use BasicApp\Core\Event;
+use BasicApp\Admin\Events\AdminCheckAccessEvent;
+use BasicApp\Admin\Events\AdminMainMenuEvent;
+use BasicApp\Admin\Events\AdminOptionsMenuEvent;
+use BasicApp\Admin\Events\AdminThemesEvent;
+use BasicApp\Admin\Events\AdminRegisterAssetsEvent;
 
 abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 {
+
+    const EVENT_CHECK_ACCESS = 'ba:admin_check_access';
 
     const EVENT_MAIN_MENU = 'ba:admin_main_menu';
 
@@ -18,6 +24,11 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
     const EVENT_THEMES = 'ba:admin_themes';
 
     const EVENT_REGISTER_ASSETS = 'ba:admin_register_assets';
+
+    public static function onCheckAccess($callback)
+    {
+        static::on(static::EVENT_CHECK_ACCESS, $callback);
+    }
 
     public static function onThemes($callback)
     {
@@ -41,7 +52,7 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 
     public static function themes($return = [])
     {
-        $event = new Event;
+        $event = new AdminThemesEvent;
 
         $event->result = $return;
 
@@ -52,7 +63,7 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 
     public static function mainMenu()
     {
-        $mainMenu = new Event;
+        $mainMenu = new AdminMainMenuEvent;
 
         $mainMenu->items = [];
 
@@ -85,7 +96,7 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 
     public static function optionsMenu()
     {
-        $optionsMenu = new Event;
+        $optionsMenu = new AdminOptionsMenuEvent;
 
         $optionsMenu->items = [];
 
@@ -105,7 +116,7 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
 
     public static function registerAssets(&$head, &$beginBody, &$endBody)
     {
-        $event = new Event;
+        $event = new AdminRegisterAssetsEvent;
 
         $event->head = $head;
 
@@ -120,6 +131,21 @@ abstract class BaseAdminEvents extends \CodeIgniter\Events\Events
         $beginBody = $event->beginBody;
 
         $endBody = $event->endBody;
+    }
+
+    public static function checkAccess($user, $permission)
+    {
+        $event = new AdminCheckAccessEvent;
+
+        $event->user = $user;
+
+        $event->permission = $permission;
+
+        $event->result = false;
+
+        static::trigger(static::EVENT_CHECK_ACCESS, $event);
+
+        return $event->result;
     }
 
 }

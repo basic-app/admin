@@ -11,11 +11,40 @@ use BasicApp\Admin\AdminServiceInterface;
 use BasicApp\Admin\AdminInterface;
 use Exception;
 use BasicApp\Admin\Models\AdminModel;
+use BasicApp\Core\AccessControlInterface;
+use BasicApp\Admin\AdminEvents;
 
 abstract class BaseAdminService extends UserService implements AdminServiceInterface
 {
 
     protected $_user;
+
+    public function can($permission) : bool
+    {
+        if (is_string($permission) && ($permission === 'guest'))
+        {
+            return true;
+        }
+
+        $user = $this->getUser();
+
+        if (!$user)
+        {
+            return false;
+        }
+
+        if (is_object($permission))
+        {
+            if ($permission instanceof AccessControlInterface)
+            {
+                return $permission->checkAccess($user);
+            }
+
+            return AdminEvents::checkAccess($user, $permission);
+        }
+
+        return false;
+    }
 
     public function getUser()
     {
