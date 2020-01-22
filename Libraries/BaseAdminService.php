@@ -33,6 +33,11 @@ abstract class BaseAdminService extends UserService implements AdminServiceInter
             return false;
         }
 
+        if ($user->hasRole('admin'))
+        {
+            return true;
+        }
+
         if (is_object($permission))
         {
             if ($permission instanceof AccessControlInterface)
