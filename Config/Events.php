@@ -14,7 +14,7 @@ use BasicApp\Admin\Filters\AdminFilter;
 
 AdminEvents::onOptionsMenu(function($event)
 {
-    if (ConfigController::checkAccess())
+    if (service('admin')->can(ConfigController::class))
     {
         $event->items[AdminConfigForm::class] = [
             'label' => t('admin.menu', 'Admin'),
