@@ -11,7 +11,7 @@ use BasicApp\Admin\AdminServiceInterface;
 use BasicApp\Admin\AdminInterface;
 use Exception;
 use BasicApp\Admin\Models\AdminModel;
-use BasicApp\Core\AccessControlInterface;
+use BasicApp\Interfaces\AccessCheckerInterface;
 use BasicApp\Admin\AdminEvents;
 
 abstract class BaseAdminService extends UserService implements AdminServiceInterface
@@ -40,7 +40,7 @@ abstract class BaseAdminService extends UserService implements AdminServiceInter
 
         if (is_object($permission))
         {
-            if ($permission instanceof AccessControlInterface)
+            if ($permission instanceof AccessCheckerInterface)
             {
                 return $permission->checkAccess($user);
             }

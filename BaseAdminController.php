@@ -6,18 +6,18 @@
  */
 namespace BasicApp\Admin;
 
-use CodeIgniter\Events\Events;
 use BasicApp\Admins\Models\AdminModel;
 use BasicApp\Core\Controller;
+use CodeIgniter\Security\Exceptions\SecurityException;
 
 abstract class BaseAdminController extends Controller
 {
 
-    const ROLE_ADMIN = 'admin';
+//    const ROLE_ADMIN = 'admin';
 
-    protected static $authService = 'admin';
+//    protected static $authService = 'admin';
 
-    protected static $roles = [self::ROLE_LOGGED];
+//    protected static $roles = [self::ROLE_LOGGED];
 
     protected $layoutPath = 'BasicApp\Admin';
 
@@ -27,7 +27,10 @@ abstract class BaseAdminController extends Controller
     {
         parent::__construct();
 
-        Events::trigger('admin_controller_constructor');
+        if (!service('admin')->can(static::class))
+        {
+            throw SecurityException::forDisallowedAction();
+        }
     }
 
 }
