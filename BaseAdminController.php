@@ -6,6 +6,9 @@
  */
 namespace BasicApp\Admin;
 
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
 use BasicApp\Admins\Models\AdminModel;
 use BasicApp\Core\Controller;
 use CodeIgniter\Security\Exceptions\SecurityException;
@@ -13,23 +16,24 @@ use CodeIgniter\Security\Exceptions\SecurityException;
 abstract class BaseAdminController extends Controller
 {
 
-//    const ROLE_ADMIN = 'admin';
+    protected $userService = 'admin';
 
-//    protected static $authService = 'admin';
-
-//    protected static $roles = [self::ROLE_LOGGED];
+    protected $checkAccess = true;
 
     protected $layoutPath = 'BasicApp\Admin';
 
     protected $layout = 'layout';
 
-    public function __construct()
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        parent::__construct();
+        parent::initController($request, $response, $logger);
 
-        if (!service('admin')->can(static::class))
+        if ($this->checkAccess)
         {
-            throw SecurityException::forDisallowedAction();
+            if (!service($this->userService)->can(static::class))
+            {
+                throw SecurityException::forDisallowedAction();
+            }
         }
     }
 

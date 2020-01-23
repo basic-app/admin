@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Basic App Dev Team <dev@basic-app.com>
+ * @license MIT
+ * @link http://basic-app.com
+ */
 $this->data['title'] = t('admin', 'Dashboard');
 
 $this->data['breadcrumbs'][] = ['label' => $this->data['title']];

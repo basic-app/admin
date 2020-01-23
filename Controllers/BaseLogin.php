@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Basic App Dev Team
+ * @author Basic App Dev Team <dev@basic-app.com>
  * @license MIT
  * @link http://basic-app.com
  */
@@ -21,22 +21,12 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 
 	protected $layoutPath = 'BasicApp\Admin';
 
-    protected $adminModel;
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->adminModel = new AdminModel;
-    }
-
-    public static function checkAccess(bool $throwExceptions = false)
-    {
-        return true;
-    }
+    protected $checkAccess = false;
 
 	public function index()
 	{
+        $adminModel = new AdminModel;
+
         $adminService = service('admin');
 
 		$admin = $adminService->getUser();
@@ -45,7 +35,7 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 		{
     		$url = Url::createUrl('admin');
 
-            return service('response')->redirect($url);
+            return $this->redirect($url);
 		}
 
 		$data = new AdminLogin;
@@ -66,11 +56,11 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 
 			if ($valid)
 			{
-                $user = $this->adminModel->findByLogin($data->login);
+                $user = $adminModel->findByLogin($data->login);
 
 				if ($user)
 				{
-					if ($this->adminModel->checkPassword($user, $data->password))
+					if ($adminModel->checkPassword($user, $data->password))
 					{
                         $adminService->login($user, $data->remember_me);
 
