@@ -18,7 +18,6 @@ AdminEvents::onOptionsMenu(function($event)
     {
         $event->items[AdminConfigForm::class] = [
             'label' => t('admin.menu', 'Admin'),
-            'icon' => 'fa fa-user',
             'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
         ];        
     }
