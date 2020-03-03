@@ -13,11 +13,16 @@ use Exception;
 use BasicApp\Admin\Models\AdminModel;
 use BasicApp\Interfaces\AccessCheckerInterface;
 use BasicApp\Admin\AdminEvents;
+use BasicApp\Helpers\Url;
 
 abstract class BaseAdminService extends UserService implements AdminServiceInterface
 {
 
     protected $_user;
+
+    protected $loginUrl = 'admin/login';
+
+    protected $logoutUrl = 'admin/logout';
 
     public function can($permission) : bool
     {
@@ -92,12 +97,12 @@ abstract class BaseAdminService extends UserService implements AdminServiceInter
 
     public function getLoginUrl()
     {
-        return site_url('admin/login');
+        return Url::createUrl($this->loginUrl);
     }
 
     public function getLogoutUrl()
     {
-        return site_url('admin/logout');
+        return Url::createUrl($this->logoutUrl);
     }
 
 }

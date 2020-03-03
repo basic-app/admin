@@ -10,10 +10,10 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use BasicApp\Admins\Models\AdminModel;
-use BasicApp\Core\Controller;
 use CodeIgniter\Security\Exceptions\SecurityException;
+use CodeIgniter\Router\Exceptions\RedirectException;
 
-abstract class BaseAdminController extends Controller
+abstract class BaseAdminController extends \BasicApp\Core\Controller
 {
 
     protected $userService = 'admin';
@@ -30,11 +30,27 @@ abstract class BaseAdminController extends Controller
 
         if ($this->checkAccess)
         {
-            if (!service($this->userService)->can(static::class))
+            $this->checkAccess();
+        }
+    }
+
+    protected function checkAccess()
+    {
+        $userService = service($this->userService);
+
+        if (!$userService->can(static::class))
+        {
+            if ($userService->getUser())
             {
                 throw SecurityException::forDisallowedAction();
             }
-        }
+            else
+            {
+                $url = $userService->getLoginUrl();
+
+                throw new RedirectException($url);
+            }
+        }             
     }
 
 }
