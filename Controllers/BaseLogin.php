@@ -70,12 +70,12 @@ abstract class BaseLogin extends \BasicApp\Admin\AdminController
 					}
 					else
 					{
-						$errors['login'] = t('admin', 'Login or password is incorrect.');
+						$errors['password'] = t('admin', 'Login or password is incorrect.');
 					}
 				}
 				else
 				{
-					$errors['login'] = t('admin', 'User not found.');
+					$errors['password'] = t('admin', 'Login or password is incorrect.');
 				}
 			}
 		}

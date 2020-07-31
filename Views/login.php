@@ -10,7 +10,9 @@ $this->data['title'] = t('admin', 'Login');
 
 $adminTheme = service('adminTheme');
 
-$form = $adminTheme->createForm($model, $errors);
+$form = $adminTheme->createForm($model);
+
+$form->setErrors($errors);
 
 echo $form->open('', ['autocomplete' => '!off']);
 
