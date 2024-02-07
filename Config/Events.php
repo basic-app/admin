@@ -11,6 +11,7 @@ use BasicApp\Config\Controllers\Admin\Config as ConfigController;
 use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
 use BasicApp\Admin\Filters\AdminFilter;
+use CodeIgniter\Events\Events;
 
 AdminEvents::onOptionsMenu(function($event)
 {
@@ -24,18 +25,19 @@ AdminEvents::onOptionsMenu(function($event)
     }
 });
 
-SystemEvents::onFilters(function($event)
+Events::on('pre_system', function()
 {
-    $event->aliases['adminIsLoggedIn'] = AdminFilter::class;
+    $pager = config(\Config\Pager::class);
 
-    $event->filters['adminIsLoggedIn'] = [
+    $pager->templates['adminTheme'] ='BasicApp\Admin\pager';
+
+    $filters = config(\Config\Filters::class);
+
+    $filters->aliases['adminIsLoggedIn'] = AdminFilter::class;
+
+    $filters->filters['adminIsLoggedIn'] = [
         'before' => ['/admin/', '/admin/*']
-    ];   
-});
-
-SystemEvents::onPager(function($event)
-{
-   $event->templates['adminTheme'] = 'BasicApp\Admin\pager';  
+    ];
 });
 
 AdminEvents::onMainMenu(function($event)

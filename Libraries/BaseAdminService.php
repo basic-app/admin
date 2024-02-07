@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Admin\Libraries;
 
-use Denis303\Auth\UserService;
+use BasicApp\Auth\AuthService;
 use BasicApp\Admin\AdminServiceInterface;
 use BasicApp\Admin\AdminInterface;
 use Exception;
@@ -15,7 +15,7 @@ use BasicApp\Interfaces\AccessCheckerInterface;
 use BasicApp\Admin\AdminEvents;
 use BasicApp\Helpers\Url;
 
-abstract class BaseAdminService extends UserService implements AdminServiceInterface
+abstract class BaseAdminService extends AuthService
 {
 
     protected $_user;
@@ -60,7 +60,7 @@ abstract class BaseAdminService extends UserService implements AdminServiceInter
     {
         if (!$this->_user)
         {
-            $userId = $this->getUserId();
+            $userId = $this->getId();
 
             if ($userId)
             {
@@ -70,7 +70,7 @@ abstract class BaseAdminService extends UserService implements AdminServiceInter
 
                 if (!$this->_user)
                 {
-                    $this->unsetUserId();
+                    $this->unsetId();
                 }                
             }
         }
@@ -87,12 +87,12 @@ abstract class BaseAdminService extends UserService implements AdminServiceInter
             throw new Exception('Primary key not defined.');
         }
 
-        $this->setUserId($id, $rememberMe);
+        $this->setId($id, $rememberMe);
     }
 
     public function logout()
     {
-        $this->unsetUserId();
+        $this->unsetId();
     }
 
     public function getLoginUrl()

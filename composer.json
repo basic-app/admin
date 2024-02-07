@@ -9,7 +9,6 @@
     "require": {
         "basic-app/system": "*",
         "basic-app/crud": "*",
-        "denis303/codeigniter4-auth": "*",
         "basic-app/module-configs": "*"
     }
 }

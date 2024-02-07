@@ -11,7 +11,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use BasicApp\Admins\Models\AdminModel;
 use CodeIgniter\Security\Exceptions\SecurityException;
-use CodeIgniter\Router\Exceptions\RedirectException;
+use CodeIgniter\Http\Exceptions\RedirectException;
 
 abstract class BaseAdminController extends \BasicApp\Core\Controller
 {
@@ -47,8 +47,15 @@ abstract class BaseAdminController extends \BasicApp\Core\Controller
             else
             {
                 $url = $userService->getLoginUrl();
+                
+                //throw new RedirectException($url);
+            
+                $response = \Config\Services::response()
+                    ->redirect($url);
+                    //->setHeader('Some', 'header')
+                    //->setCookie('and', 'cookie');
 
-                throw new RedirectException($url);
+                throw new RedirectException($response);
             }
         }             
     }
