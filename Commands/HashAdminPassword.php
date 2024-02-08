@@ -18,7 +18,7 @@ class HashAdminPassword extends \BasicApp\Core\Command
     {
         list($password) = $params;
 
-        echo service('adminAuth')->hashPassword($password);
+        echo password_hash($password, PASSWORD_DEFAULT);
     }
 
 }
