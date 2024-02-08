@@ -11,21 +11,18 @@ use BasicApp\Config\Controllers\Admin\Config as ConfigController;
 use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
 use BasicApp\Admin\Filters\AdminFilter;
-use CodeIgniter\Events\Events;
+use BasicApp\Core\Events;
 
 AdminEvents::onOptionsMenu(function($event)
 {
-    if (service('admin')->can(ConfigController::class))
-    {
-        $event->items[AdminConfigForm::class] = [
-            'label' => t('admin.menu', 'Admin'),
-            'icon' => 'fa fa-fw fa-id-card',
-            'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
-        ];        
-    }
+    $event->items[AdminConfigForm::class] = [
+        'label' => t('admin.menu', 'Admin'),
+        'icon' => 'fa fa-fw fa-id-card',
+        'url' => Url::createUrl('admin/config', ['class' => AdminConfigForm::class])
+    ];    
 });
 
-Events::on('pre_system', function()
+Events::onPreSystem(function() 
 {
     $pager = config(\Config\Pager::class);
 
@@ -33,10 +30,13 @@ Events::on('pre_system', function()
 
     $filters = config(\Config\Filters::class);
 
-    $filters->aliases['adminIsLoggedIn'] = AdminFilter::class;
+    $filters->aliases['admin'] = AdminFilter::class;
 
-    $filters->filters['adminIsLoggedIn'] = [
-        'before' => ['/admin/', '/admin/*']
+    $filters->filters['admin'] = [
+        'before' => [
+            'admin', 
+            'admin/*'
+        ]
     ];
 });
 

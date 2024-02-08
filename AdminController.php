@@ -6,6 +6,20 @@
  */
 namespace BasicApp\Admin;
 
-abstract class AdminController extends BaseAdminController
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+use BasicApp\Admins\Models\AdminModel;
+use CodeIgniter\Security\Exceptions\SecurityException;
+use CodeIgniter\Http\Exceptions\RedirectException;
+
+class AdminController extends \BasicApp\Core\Controller
 {
+
+    protected $userService = 'adminAuth';
+
+    protected $layoutPath = 'BasicApp\Admin';
+
+    protected $layout = 'layout';
+
 }

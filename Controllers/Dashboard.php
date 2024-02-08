@@ -1,11 +1,20 @@
 <?php
 /**
- * @author Basic App Dev Team <dev@basic-app.com>
+ * @author Basic App Dev Team
  * @license MIT
- * @link http://basic-app.com
  */
 namespace BasicApp\Admin\Controllers;
 
-class Dashboard extends BaseDashboard
+class Dashboard extends \BasicApp\Admin\AdminController
 {
+
+    protected $viewPath = 'BasicApp\Admin\Dashboard';
+
+    protected $returnUrl = 'admin/dashboard';
+
+    public function index()
+    {
+        return $this->render('index');
+    }
+
 }

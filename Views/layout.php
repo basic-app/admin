@@ -7,15 +7,6 @@
 use BasicApp\Helpers\Url;
 use BasicApp\Admin\AdminEvents;
 
-$adminService = service('admin');
-
-$admin = $adminService->getUser();
-
-if (!$admin)
-{
-    throw new Exception('Security check error.');
-}
-
 $adminTheme = service('adminTheme');
 
 AdminEvents::registerAssets($adminTheme->head, $adminTheme->beginBody, $adminTheme->endBody);
@@ -48,12 +39,12 @@ echo $adminTheme->mainLayout([
     'content' => $content,
     'copyright' => 'Copyright © <a href="http://basic-app.com" target="_blank">Basic App</a> 2018 – ' . date('Y'), // Don't change it! According of the MIT license.
     'account' => [
-        'name' => $admin->getName(),
-        'email' => $admin->getEmail(),
-        'description' => $admin->getDescription() ?? ($admin->getEmail() . '&nbsp;'),
-        'avatarUrl' => $admin->getAvatarUrl(),
-        'profileUrl' => '#profile',
-        'logoutUrl' => Url::createUrl('admin/logout'),
+        'name' => service('adminAuth')->user_id(),
+        'email' => null,
+        'description' => t('admin', 'Administrator'),
+        'avatarUrl' => null,
+        'profileUrl' => null,
+        'logoutUrl' => service('adminAuth')->logoutUrl(),
         'logoutLabel' => t('admin', 'Logout')
     ],
     'successMessages' => (array) $session->getFlashdata('success'),

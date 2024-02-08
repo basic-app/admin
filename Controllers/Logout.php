@@ -1,11 +1,25 @@
 <?php
 /**
- * @author Basic App Dev Team <dev@basic-app.com>
+ * @author Basic App Dev Team
  * @license MIT
- * @link http://basic-app.com
  */
 namespace BasicApp\Admin\Controllers;
 
-class Logout extends BaseLogout
+use BasicApp\Core\Controller;
+
+class Logout extends Controller
 {
+
+	public function index()
+	{
+        $authService = service('adminAuth');
+
+		if ($authService->user_id())
+		{
+            $authService->logout();
+		}
+
+        return $this->redirect($authService->dashboardUrl());
+	}
+
 }
