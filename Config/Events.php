@@ -12,8 +12,9 @@ use BasicApp\Admin\Forms\AdminConfigForm;
 use BasicApp\System\Forms\SystemConfigForm;
 use BasicApp\Admin\Filters\AdminFilter;
 use BasicApp\Core\Events;
+use BasicApp\AdminMenu\AdminMenuEvents;
 
-AdminEvents::onOptionsMenu(function($event)
+AdminMenuEvents::onOptionsMenu(function($event)
 {
     $event->items[AdminConfigForm::class] = [
         'label' => t('admin.menu', 'Admin'),
@@ -40,7 +41,7 @@ Events::onPreSystem(function()
     ];
 });
 
-AdminEvents::onMainMenu(function($event)
+AdminMenuEvents::onMainMenu(function($event)
 {
     $event->items['site']['url'] = '#';
     $event->items['site']['label'] = t('admin.menu', 'Site');

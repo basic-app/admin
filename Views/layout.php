@@ -31,8 +31,8 @@ $session = service('session');
 
 echo $adminTheme->mainLayout([
     'homeUrl' => Url::createUrl('admin'),
-    'optionsMenu' => AdminEvents::optionsMenu(),
-    'mainMenu' => AdminEvents::mainMenu(),
+    'optionsMenu' => adminOptionsMenu($this->data['optionsMenu'] ?? []),
+    'mainMenu' => adminMainMenu($this->data['mainMenu'] ?? []),
     'title' => array_key_exists('title', $this->data) ? $this->data['title'] : '',
     'actionMenu' => $actionMenu,
     'breadcrumbs' => array_key_exists('breadcrumbs', $this->data) ? $this->data['breadcrumbs'] : [],
