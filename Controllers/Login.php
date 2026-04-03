@@ -25,7 +25,7 @@ class Login extends \BasicApp\Admin\AdminController
 
 		if ($authService->user_id())
 		{
-            return $this->redirect($adminService->dashboardUrl());
+            return $this->redirect($authService->dashboardUrl());
 		}
 
 		$data = new AdminLogin;
