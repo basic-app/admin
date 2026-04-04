@@ -39,12 +39,12 @@ echo $adminTheme->mainLayout([
     'content' => $content,
     'copyright' => 'Copyright © <a href="http://basic-app.com" target="_blank">Basic App</a> 2018 – ' . date('Y'), // Don't change it! According of the MIT license.
     'account' => [
-        'name' => service('adminAuth')->user_id(),
+        'name' => user_id(),
         'email' => null,
         'description' => t('admin', 'Administrator'),
         'avatarUrl' => null,
         'profileUrl' => null,
-        'logoutUrl' => service('adminAuth')->logoutUrl(),
+        'logoutUrl' => site_url('admin/logout'),
         'logoutLabel' => t('admin', 'Logout')
     ],
     'successMessages' => (array) $session->getFlashdata('success'),

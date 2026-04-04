@@ -11,31 +11,6 @@ use CodeIgniter\Config\BaseService;
 
 class Services extends BaseService
 {
-
-    public static function adminAuth($getShared = true)
-    {
-        if (!$getShared)
-        {
-            $config = config('Admin');
-
-            $params = [];
-
-            if ($config->loginUrl)
-            {
-                $params['loginUrl'] = $config->loginUrl;
-            }
-
-            if ($config->logoutUrl)
-            {
-                $params['logoutUrl'] = $config->logoutUrl;
-            }
-
-            return new AdminAuthService($params);
-        }
-
-        return static::getSharedInstance(__FUNCTION__);
-    }
-
     public static function adminTheme($getShared = true)
     {
         if (!$getShared)
@@ -56,5 +31,4 @@ class Services extends BaseService
 
         return static::getSharedInstance('adminTheme');
     }
-
 }

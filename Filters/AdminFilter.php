@@ -11,12 +11,11 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class AdminFilter implements FilterInterface
 {
-
     public function before(RequestInterface $request, $arguments = null)
     {
-        $adminAuth = service('adminAuth');
+        helper(['url', 'auth']);
 
-        $loginUrl = $adminAuth->loginUrl();
+        $loginUrl = site_url('admin/login');
 
         $currentUrl = current_url();
 
@@ -25,7 +24,7 @@ class AdminFilter implements FilterInterface
             return;
         }
 
-        if ($adminAuth->user_id())
+        if (user_id())
         {
             return;
         }

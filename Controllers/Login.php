@@ -21,11 +21,11 @@ class Login extends \BasicApp\Admin\AdminController
 
 	public function index()
 	{
-        $authService = service('adminAuth');
-
-		if ($authService->user_id())
+        helper(['url', 'auth']);
+    
+		if (user_id())
 		{
-            return $this->redirect($authService->dashboardUrl());
+            return $this->redirect(site_url('admin'));
 		}
 
 		$data = new AdminLogin;
@@ -52,9 +52,9 @@ class Login extends \BasicApp\Admin\AdminController
                 {
                     if (password_verify($data->password, $config->passwordHash))
                     {
-                        $authService->login($data->login, $data->remember_me);
+                        user_id($data->login, $data->remember_me);
                     
-                        return $this->redirect($authService->dashboardUrl());
+                        return $this->redirect(site_url('admin'));
                     }
                     else
                     {

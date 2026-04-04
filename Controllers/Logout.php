@@ -9,17 +9,13 @@ use BasicApp\Core\Controller;
 
 class Logout extends Controller
 {
-
 	public function index()
 	{
-        $authService = service('adminAuth');
-
-		if ($authService->user_id())
+		if (user_id())
 		{
-            $authService->logout();
+            user_id(0);
 		}
 
-        return $this->redirect($authService->dashboardUrl());
+        return $this->redirect(site_url('admin'));
 	}
-
 }
