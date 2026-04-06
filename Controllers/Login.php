@@ -23,7 +23,7 @@ class Login extends \BasicApp\Admin\AdminController
 	{
         helper(['url', 'auth']);
     
-		if (user_id())
+		if (user_id('admin'))
 		{
             return $this->redirect(site_url('admin'));
 		}
@@ -52,7 +52,7 @@ class Login extends \BasicApp\Admin\AdminController
                 {
                     if (password_verify($data->password, $config->passwordHash))
                     {
-                        user_id($data->login, $data->remember_me);
+                        login($data->login, $data->remember_me, 'admin');
                     
                         return $this->redirect(site_url('admin'));
                     }

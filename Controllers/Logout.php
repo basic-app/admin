@@ -13,7 +13,7 @@ class Logout extends Controller
 	{
 		if (user_id())
 		{
-            user_id(0);
+            logout('admin');
 		}
 
         return $this->redirect(site_url('admin'));

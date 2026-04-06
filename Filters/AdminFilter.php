@@ -24,7 +24,7 @@ class AdminFilter implements FilterInterface
             return;
         }
 
-        if (user_id())
+        if (user_id('admin'))
         {
             return;
         }
