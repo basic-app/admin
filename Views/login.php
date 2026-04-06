@@ -20,8 +20,6 @@ echo $form->inputGroup($data, 'login', ['autofocus' => true]);
 
 echo $form->passwordGroup($data, 'password');
 
-echo $form->checkboxGroup($data, 'remember_me');
-
 echo $form->renderErrors();
 
 $label = t('admin', 'Sign in');
