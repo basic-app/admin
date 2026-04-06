@@ -30,6 +30,8 @@ class Login extends \BasicApp\Admin\AdminController
 
 		$data = new AdminLogin;
 
+        $data->remember_me = 1;
+
 		$model = new AdminLoginForm;
 
 		$post = $this->request->getPost();
@@ -50,7 +52,7 @@ class Login extends \BasicApp\Admin\AdminController
                 {
                     if (password_verify($data->password, $config->passwordHash))
                     {
-                        user_id($data->login);
+                        user_id($data->login, $data->remember_me);
                     
                         return $this->redirect(site_url('admin'));
                     }
