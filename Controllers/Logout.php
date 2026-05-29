@@ -11,7 +11,7 @@ class Logout extends Controller
 {
 	public function index()
 	{
-		if (user_id())
+		if (user_id('admin'))
 		{
             logout('admin');
 		}

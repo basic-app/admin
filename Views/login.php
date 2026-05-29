@@ -1,35 +1,50 @@
 <?php
-/**
- * @author Basic App Dev Team <dev@basic-app.com>
- * @license MIT
- * @link http://basic-app.com
- */
-use BasicApp\Helpers\Url;
+
+helper(['form', 'url']);
+
+$this->extend('BasicApp\Admin\auth-layout');
 
 $this->data['title'] = t('admin', 'Login');
 
-$adminTheme = service('adminTheme');
+$this->section('content');
 
-$form = $adminTheme->createForm($model);
+echo form_open(site_url('admin/login'));
 
-$form->setErrors($errors);
+echo view_cell('Admin::formInputGroup', [
+    'attributes' => [
+        'autofocus' => true,
+        'name' => 'login',
+        'value' => set_value('login')
+    ],
+    'label' => $attributes['login'] ?? 'login',
+    'error' => $errors['login'] ?? null
+]);
 
-echo $form->open('', ['autocomplete' => '!off']);
+echo view_cell('Admin::formPasswordGroup', [
+    'attributes' => [
+        'name' => 'password'
+    ],
+    'label' => $attributes['password'] ?? 'password',
+    'error' => $errors['password'] ?? null
+]);
 
-echo $form->inputGroup($data, 'login', ['autofocus' => true]);
+echo view_cell('Admin::formCheckboxGroup', [
+    'for' => 'remember-checkbox',
+    'attributes' => [
+        'id' => 'remember-checkbox',
+        'name' => 'remember_me'
+    ],
+    'label' => $attributes['remember_me'] ?? 'remember_me',
+    'error' => $errors['remember_me'] ?? null
+]);
 
-echo $form->passwordGroup($data, 'password');
 
-echo $form->checkboxGroup($data, 'remember_me');
+echo view_cell('Admin::formSubmit', [
+    'attributes' => [
+        'value' => lang('Sign in')
+    ]
+]);
 
-echo $form->renderErrors();
+echo form_close();
 
-$label = t('admin', 'Sign in');
-
-echo $form->beginButtons();
-
-echo $form->submitButton($label);
-
-echo $form->endButtons();
-
-echo $form->close();
+$this->endSection();

@@ -70,11 +70,11 @@ class Login extends \BasicApp\Admin\AdminController
 
 		$data->password = '';
 
-		return $this->render('login', [
+		return view('BasicApp\Admin/login', [
             'model' => $model,
+            'attributes' => $model->fieldLabels,
             'data' => $data,
             'errors' => array_merge((array) $model->errors(), $errors)
         ]);
 	}
-
 }
