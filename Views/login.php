@@ -29,15 +29,15 @@ echo view_cell('Admin::formPasswordGroup', [
 ]);
 
 echo view_cell('Admin::formCheckboxGroup', [
-    'for' => 'remember-checkbox',
     'attributes' => [
         'id' => 'remember-checkbox',
-        'name' => 'remember_me'
+        'name' => 'remember_me',
+        'value' => 1,
+        'checked' => set_value('remember_me', 1) == 1
     ],
     'label' => $attributes['remember_me'] ?? 'remember_me',
     'error' => $errors['remember_me'] ?? null
 ]);
-
 
 echo view_cell('Admin::formSubmit', [
     'attributes' => [
