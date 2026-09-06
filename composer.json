@@ -3,13 +3,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "BasicApp\\Admin\\": ""
+            "BasicApp\\Admin\\": "src/"
         }
-    },
-    "require": {
-		"basic-app/auth": "*",
-        "basic-app/system": "*",
-        "basic-app/crud": "*",
-        "basic-app/module-configs": "*"
     }
 }
