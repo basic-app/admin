@@ -20,5 +20,6 @@ return [
     'Enter login' => 'Enter login',
     'Enter your password' => 'Enter your password',
     'Yes' => 'Yes',
-    'No' => 'No'
+    'No' => 'No',
+    'Toggle navigation' => 'Toggle navigation'
 ];
