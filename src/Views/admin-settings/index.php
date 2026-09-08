@@ -12,7 +12,7 @@ helper(['form']);
 <?php $this->extend('BasicApp\Admin\layout');?>
 <?php $this->section('content');?>
 
-<?= form_open_multipart();?>
+<?= form_open_multipart('admin/admin-settings');?>
 
 <?= view_cell('AdminInput', [
     'label' => $labels['login'] ?? 'login',
