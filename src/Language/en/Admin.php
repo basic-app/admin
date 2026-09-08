@@ -21,5 +21,7 @@ return [
     'Enter your password' => 'Enter your password',
     'Yes' => 'Yes',
     'No' => 'No',
-    'Toggle navigation' => 'Toggle navigation'
+    'Toggle navigation' => 'Toggle navigation',
+    'Invalid login.' => 'Invalid login.',
+    'Invalid password.' => 'Invalid password.'
 ];
