@@ -5,10 +5,10 @@
  */
 if (!function_exists('admin_icon'))
 {
-    function admin_icon(array $params = [])
+    function admin_icon(array $attributes = [])
     {
         helper('render_view');
 
-        render_view('BasicApp\Admin\icon', $params);
+        return render_view('BasicApp\Admin\icon', ['attributes' => $attributes]);
     }
 }
