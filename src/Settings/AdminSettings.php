@@ -93,9 +93,7 @@ class AdminSettings extends SettingsEntity implements AdminInterface
             [
                 'label' => lang('Admin.Settings'),
                 'url' => site_url('admin/admin-settings'),
-                'icon' => [
-                    'icon' => 'fa-user'
-                ]
+                'icon' => 'fa-user'
             ]
         ];
     }

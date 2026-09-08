@@ -26,19 +26,19 @@ abstract class BaseAdminGridButton extends Cell
         {
             case static::SCENARIO_ADD: 
                 $this->type = $this->type ?? 'primary';
-                $this->icon = $this->icon ?? ['icon' => 'fa-regular fa-plus'];
+                $this->icon = $this->icon ?? 'fa-regular fa-plus';
                 $this->label = $this->label ?? lang('Admin.Add');
             break;
 
             case static::SCENARIO_EDIT:
                 $this->type = $this->type ?? 'primary';
-                $this->icon = $this->icon ?? ['icon' => 'fa-regular fa-edit'];
+                $this->icon = $this->icon ?? 'fa-regular fa-edit';
                 $this->label = $this->label ?? lang('Admin.Edit');
             break;
 
             case static::SCENARIO_DELETE:
                 $this->type = $this->type ?? 'danger';
-                $this->icon = $this->icon ?? ['icon' => 'fa-trash'];
+                $this->icon = $this->icon ?? 'fa-trash';
                 $this->label = $this->label ?? lang('Admin.Delete');
                 $this->confirmation = $this->confirmation ?? lang('Admin.Are you sure?');
                 $this->method = $this->method ?? 'POST';
