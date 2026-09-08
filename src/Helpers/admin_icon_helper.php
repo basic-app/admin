@@ -5,10 +5,15 @@
  */
 if (!function_exists('admin_icon'))
 {
-    function admin_icon(array $attributes = [])
+    function admin_icon($icon)
     {
-        helper('render_view');
+        if (is_string($icon))
+        {
+            helper(['fontawesome7']);
+        
+            return fontawesome7_icon($icon);
+        }
 
-        return render_view('BasicApp\Admin\icon', ['attributes' => $attributes]);
+        return view_cell($icon['cell'], $icon['attributes']);
     }
 }

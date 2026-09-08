@@ -8,6 +8,7 @@
     },
     "require": {
 		"basic-app/core": "dev-master",
-        "basic-app/auth": "dev-main"
+        "basic-app/auth": "dev-main",
+        "basic-app/fontawesome7": "dev-main"
     }
 }
