@@ -23,5 +23,13 @@ return [
     'No' => 'No',
     'Toggle navigation' => 'Toggle navigation',
     'Invalid login.' => 'Invalid login.',
-    'Invalid password.' => 'Invalid password.'
+    'Invalid password.' => 'Invalid password.',
+    'Manage' => 'Manage',
+    'Add' => 'Add',
+    'Edit' => 'Edit',
+    'Create' => 'Create',
+    'Update' => 'Update',
+    'Delete' => 'Delete',
+    'Back' => 'Back',
+    'Are you sure?' => 'Are you sure?'
 ];
