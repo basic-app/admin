@@ -35,6 +35,13 @@ $adminMenu = AdminMenu::trigger();
 
 $adminFooterMenu = AdminFooterMenu::trigger();
 
+$adminMenuItems = [];
+
+foreach($adminMenu->items as $group => $items)
+{
+    $adminMenuItems[lang('Admin.' . $group)] = $items;
+}
+
 $content =  view_cell('AdminLayout', [
     'user' => service('adminSettings'),
     'appName' => service('adminSettings')->appName ?? 'Basic App',
@@ -53,7 +60,7 @@ $content =  view_cell('AdminLayout', [
         'danger' => service('session')->getFlashdata('error'),
         'info' => service('session')->getFlashdata('info')
     ],
-    'menu' => $adminMenu->items,
+    'menu' => $adminMenuItems,
     'footerMenu' => $adminFooterMenu->items,
     'copyright' => '<a class="text-muted" href="https://basic-app.com/" target="_blank"><strong>Basic App</strong></a> &copy;'
 ]);

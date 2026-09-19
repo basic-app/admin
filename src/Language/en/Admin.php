@@ -31,5 +31,6 @@ return [
     'Update' => 'Update',
     'Delete' => 'Delete',
     'Back' => 'Back',
-    'Are you sure?' => 'Are you sure?'
+    'Are you sure?' => 'Are you sure?',
+    'Data' => 'Data'
 ];
