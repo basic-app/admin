@@ -32,5 +32,7 @@ return [
     'Delete' => 'Delete',
     'Back' => 'Back',
     'Are you sure?' => 'Are you sure?',
-    'Data' => 'Data'
+    'Data' => 'Data',
+    'OK' => 'OK',
+    'Cancel' => 'Cancel'
 ];

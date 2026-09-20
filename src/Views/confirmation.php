@@ -3,9 +3,9 @@
  * @author Basic App Dev Team
  * @license MIT
  */
-helper(['jquery3']);
+helper(['admin_jquery']);
 
-register_jquery3();
+register_admin_jquery();
 ?>
 <script type="text/javascript">
     $(document).on('submit', 'form', function(event) {
