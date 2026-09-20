@@ -90,7 +90,7 @@ class AdminSettings extends SettingsEntity implements AdminInterface
     public function getAdminAccountMenu() : array
     {
         return [
-            [
+            'admin-settings' => [
                 'label' => lang('Admin.Settings'),
                 'url' => site_url('admin/admin-settings'),
                 'icon' => 'fa-user'
