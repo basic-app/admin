@@ -8,9 +8,13 @@ namespace BasicApp\Admin\Settings;
 use BasicApp\Core\SettingsEntity;
 use BasicApp\Admin\Interfaces\AdminInterface;
 use CodeIgniter\HTTP\Files\UploadedFile;
+use BasicApp\Core\Traits\Upload;
+use BasicApp\Core\Traits\UnlinkChanged;
 
 class AdminSettings extends SettingsEntity implements AdminInterface
 {
+    use Upload, UnlinkChanged;
+
     protected $attributes = [
         'login' => null,
         'password_hash' => null,
@@ -40,7 +44,7 @@ class AdminSettings extends SettingsEntity implements AdminInterface
         ];
     }
 
-    public function fill(?array $data = null) : void
+    public function fill(?array $data = null)
     {
         if (!empty($data['new_password']))
         {
@@ -103,6 +107,7 @@ class AdminSettings extends SettingsEntity implements AdminInterface
         if ($image->isValid())
         {
             $this->avatar_image_path = $this->upload($image, 'uploads/avatars');
+
             $this->avatar_image_original_name = $image->getClientName();
         }
     }
@@ -112,13 +117,14 @@ class AdminSettings extends SettingsEntity implements AdminInterface
         if ($value == 1)
         {
             $this->avatar_image_path = null;
+            
             $this->avatar_image_original_name = null;
         }
     }
 
-    public function save(?string $class = null) : bool
+    public function save(&$errors = null) : bool
     {
-        $return = parent::save($class);
+        $return = parent::save($errors);
 
         if ($return)
         {
@@ -127,5 +133,4 @@ class AdminSettings extends SettingsEntity implements AdminInterface
 
         return $return;
     }
-
 }
