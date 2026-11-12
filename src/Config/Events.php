@@ -7,9 +7,7 @@ namespace BasicApp\Admin\Config;
 
 use CodeIgniter\Events\Events;
 use BasicApp\Admin\Rules\AdminRules;
-use Config\Validation;
 use Config\Pager;
-use BasicApp\Admin\Events\AdminMenu;
 
 /*
  * --------------------------------------------------------------------
@@ -29,9 +27,5 @@ use BasicApp\Admin\Events\AdminMenu;
  */
 
 Events::on('pre_system', static function(): void {
-    config(Validation::class)->ruleSets[] = AdminRules::class;
     config(Pager::class)->templates['admin'] = 'BasicApp\Admin\pager';
-});
-
-Events::on(AdminMenu::class, static function(AdminMenu $event) : void {
 });

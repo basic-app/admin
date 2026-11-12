@@ -19,7 +19,7 @@ $adminStyles = AdminStyles::trigger([
     'styles' => [
         '<!--render_styles()-->',
         render_view('BasicApp\Admin\styles'),
-        $this->renderSection('styles')
+        $this->renderSection('pageStyles')
     ]
 ]);
 
@@ -27,7 +27,7 @@ $adminScripts = AdminScripts::trigger([
     'scripts' => [
         '<!--render_scripts()-->',
         render_view('BasicApp\Admin\scripts'),
-        $this->renderSection('scripts')
+        $this->renderSection('pageScripts')
     ]
 ]);
 
@@ -43,7 +43,7 @@ foreach($adminMenu->items as $group => $items)
 }
 
 $content =  view_cell('AdminLayout', [
-    'user' => service('adminSettings'),
+    'user' => service('adminAuth'),
     'appName' => service('adminSettings')->appName ?? 'Basic App',
     'lang' => service('request')->getLocale(),
     'title' => $title ?? null,
