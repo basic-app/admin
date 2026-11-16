@@ -3,12 +3,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "BasicApp\\Admin\\": "src/"
+            "BasicApp\\Admin\\": "src"
         }
     },
     "require": {
-		"basic-app/core": "dev-master",
-        "basic-app/auth": "dev-main",
-        "basic-app/fontawesome7": "dev-main"
+		"basic-app/core": "*",
+		"basis-app/event": "*",
+        "basic-app/auth": "*",
+        "basic-app/fontawesome7": "*"
     }
 }
