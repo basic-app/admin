@@ -1,18 +1,20 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
+
 namespace BasicApp\Admin\Cells;
 
 use CodeIgniter\View\Cells\Cell;
 
 abstract class BaseAdminGridButton extends Cell
 {
-    const SCENARIO_ADD = 'add';
-    const SCENARIO_EDIT = 'edit';
-    const SCENARIO_DELETE = 'delete';
+    public const SCENARIO_ADD = 'add';
+    public const SCENARIO_EDIT = 'edit';
+    public const SCENARIO_DELETE = 'delete';
 
     public $scenario;
     public $type;
@@ -21,21 +23,20 @@ abstract class BaseAdminGridButton extends Cell
     public $confirmation;
     public $method;
 
-    public function mount() : void
+    public function mount(): void
     {
-        switch($this->scenario) 
-        {
-            case static::SCENARIO_ADD: 
+        switch ($this->scenario) {
+            case static::SCENARIO_ADD:
                 $this->type = $this->type ?? 'primary';
                 $this->icon = $this->icon ?? 'fa-regular fa-plus';
                 $this->label = $this->label ?? lang('Admin.Add');
-            break;
+                break;
 
             case static::SCENARIO_EDIT:
                 $this->type = $this->type ?? 'primary';
                 $this->icon = $this->icon ?? 'fa-regular fa-edit';
                 $this->label = $this->label ?? lang('Admin.Edit');
-            break;
+                break;
 
             case static::SCENARIO_DELETE:
                 $this->type = $this->type ?? 'danger';
@@ -43,7 +44,7 @@ abstract class BaseAdminGridButton extends Cell
                 $this->label = $this->label ?? lang('Admin.Delete');
                 $this->confirmation = $this->confirmation ?? lang('Admin.Are you sure?');
                 $this->method = $this->method ?? 'POST';
-            break;
+                break;
         }
     }
 }

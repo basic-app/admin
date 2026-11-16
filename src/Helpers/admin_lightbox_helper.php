@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
-if (!function_exists('register_admin_lightbox'))
-{
+if (!function_exists('register_admin_lightbox')) {
     function register_admin_lightbox(array $params = [])
     {
         helper('render_view');

@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
+
 namespace BasicApp\Admin\Events;
 
 use BasicApp\Event\Event;
@@ -14,10 +16,9 @@ class AdminMenu extends Event
 
     public function prependGroup($groupName)
     {
-        if (!array_key_exists($groupName, $this->items))
-        {
+        if (!array_key_exists($groupName, $this->items)) {
             $this->items = array_merge(
-                [$groupName => []], 
+                [$groupName => []],
                 $this->items
             );
         }
@@ -25,7 +26,7 @@ class AdminMenu extends Event
         return $this;
     }
 
-    public function addItems(string $groupName, array $items) 
+    public function addItems(string $groupName, array $items)
     {
         $this->items[$groupName] = array_merge(
             $this->items[$groupName] ?? [],
@@ -33,7 +34,7 @@ class AdminMenu extends Event
         );
     }
 
-    public function prependItems(string $groupName, array $items) 
+    public function prependItems(string $groupName, array $items)
     {
         $this->items[$groupName] = array_merge(
             $items,

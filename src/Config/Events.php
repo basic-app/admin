@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
+
 namespace BasicApp\Admin\Config;
 
 use CodeIgniter\Events\Events;
@@ -27,6 +29,6 @@ use Config\Pager;
  *      Events::on('create', [$myInstance, 'myMethod']);
  */
 
-Events::on('pre_system', static function(): void {
+Events::on('pre_system', static function (): void {
     config(Pager::class)->templates['admin'] = 'BasicApp\Admin\pager';
 });

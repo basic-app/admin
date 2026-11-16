@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
-if (!function_exists('register_admin_editor'))
-{
+if (!function_exists('register_admin_editor')) {
     function register_admin_editor(array $params = [])
     {
         helper('render_view');

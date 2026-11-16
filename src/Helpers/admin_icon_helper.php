@@ -1,17 +1,16 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
-if (!function_exists('admin_icon'))
-{
+if (!function_exists('admin_icon')) {
     function admin_icon($icon)
     {
-        if (is_string($icon))
-        {
+        if (is_string($icon)) {
             helper(['fontawesome7']);
-        
+
             return fontawesome7_icon($icon);
         }
 
