@@ -25,5 +25,6 @@ return [
     'Are you sure?' => 'Are you sure?',
     'Data' => 'Data',
     'OK' => 'OK',
-    'Cancel' => 'Cancel'
+    'Cancel' => 'Cancel',
+    'Close' => 'Close'
 ];

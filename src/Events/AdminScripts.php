@@ -8,9 +8,8 @@ declare(strict_types=1);
 
 namespace BasicApp\Admin\Events;
 
-use BasicApp\Event\Event;
+use BasicApp\Event\EventWithItems;
 
-class AdminScripts extends Event
+class AdminScripts extends EventWithItems
 {
-    public $scripts = [];
 }

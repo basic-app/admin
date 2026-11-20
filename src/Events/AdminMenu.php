@@ -12,7 +12,7 @@ use BasicApp\Event\Event;
 
 class AdminMenu extends Event
 {
-    public $items = [];
+    public array $items = [];
 
     public function prependGroup($groupName)
     {
@@ -40,5 +40,10 @@ class AdminMenu extends Event
             $items,
             $this->items[$groupName] ?? []
         );
+    }
+
+    public function getItems(): array
+    {
+        return $this->items;
     }
 }

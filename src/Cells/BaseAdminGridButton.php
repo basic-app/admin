@@ -16,12 +16,12 @@ abstract class BaseAdminGridButton extends Cell
     public const SCENARIO_EDIT = 'edit';
     public const SCENARIO_DELETE = 'delete';
 
-    public $scenario;
-    public $type;
-    public $icon;
-    public $label;
-    public $confirmation;
-    public $method;
+    public ?string $scenario = null;
+    public ?string $type = null;
+    public ?string $icon = null;
+    public ?string $label = null;
+    public ?string $confirmation = null;
+    public ?string $method = null;
 
     public function mount(): void
     {

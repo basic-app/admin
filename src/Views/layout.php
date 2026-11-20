@@ -1,9 +1,12 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * @author Basic App Dev Team
  * @license MIT
  */
+
 use CodeIgniter\Events\Events;
 use BasicApp\Admin\Events\AdminMenu;
 use BasicApp\Admin\Events\AdminFooterMenu;
@@ -16,29 +19,21 @@ helper([
     'styles'
 ]);
 
-$adminStyles = AdminStyles::trigger([
-    'styles' => [
-        '<!--render_styles()-->',
-        render_view('BasicApp\Admin\styles'),
-        $this->renderSection('pageStyles')
-    ]
-]);
+/** @var AdminStyles $adminStyles */
+$adminStyles = AdminStyles::trigger();
 
-$adminScripts = AdminScripts::trigger([
-    'scripts' => [
-        '<!--render_scripts()-->',
-        render_view('BasicApp\Admin\scripts'),
-        $this->renderSection('pageScripts')
-    ]
-]);
+/** @var AdminScripts $adminScripts */
+$adminScripts = AdminScripts::trigger();
 
+/** @var AdminMenu $adminMenu */
 $adminMenu = AdminMenu::trigger();
 
+/** @var AdminFooterMenu $adminFooterMenu */
 $adminFooterMenu = AdminFooterMenu::trigger();
 
 $adminMenuItems = [];
 
-foreach($adminMenu->items as $group => $items)
+foreach($adminMenu->getItems() as $group => $items)
 {
     $adminMenuItems[lang('Admin.' . $group)] = $items;
 }
@@ -52,8 +47,12 @@ $content =  view_cell('AdminLayout', [
     'description' => $description ?? null,
     'breadcrumbs' => $breadcrumbs ?? [],
     'content' => $this->renderSection('content'),
-    'styles' => implode("\n", $adminStyles->styles),
-    'scripts' => implode("\n", $adminScripts->scripts),
+    'styles' => '<!--render_styles()-->' // assets
+        . implode("\n", $adminStyles->getItems()) // globals
+        . $this->renderSection('pageStyles'), // page
+    'scripts' => '<!--render_scripts()-->' // assets
+        . implode("\n", $adminScripts->getItems()) // global
+        . $this->renderSection('pageScripts'), // page
     'activeMenu' => $activeMenu ?? null,
     'actions' => $actions ?? [],
     'messages' => [
@@ -62,7 +61,7 @@ $content =  view_cell('AdminLayout', [
         'info' => service('session')->getFlashdata('info')
     ],
     'menu' => $adminMenuItems,
-    'footerMenu' => $adminFooterMenu->items,
+    'footerMenu' => $adminFooterMenu->getItems(),
     'copyright' => '<a class="text-muted" href="https://basic-app.com/" target="_blank"><strong>Basic App</strong></a> &copy;'
 ]);
 

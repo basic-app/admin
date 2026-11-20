@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace BasicApp\Admin\Controllers;
 
+use App\Controllers\Admin\BaseController;
+
 class DashboardController extends BaseController
 {
     public function index(): string

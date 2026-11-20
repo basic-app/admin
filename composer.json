@@ -8,6 +8,7 @@
     },
     "require": {
 		"basic-app/core": "*",
+		"basic-app/settings": "*",
 		"basic-app/event": "*",
         "basic-app/auth": "*",
         "basic-app/fontawesome7": "*"
